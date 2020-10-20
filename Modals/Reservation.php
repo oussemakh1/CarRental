@@ -2,8 +2,7 @@
 
  //Include databse
  include_once '../../lib/Database.php';
- //Include messages
- include '../../lib/messages.php';
+
 
 
 class Reservation{
@@ -28,15 +27,46 @@ private $heure_depart;
 private $date_retour;
 private $heure_retour;
 private $marque_vehicule;
-private $immatriculation_vehicule;
-private $proprietaire;
+private $type_client;
 private $etat_vehicule;
 private $assurance;
+private $n_serie;
+private $isDone;
 
 //Execute  database connection
 public function __construct(){
+
+  //Execute  database connection
   $this->db = new Database();
+  //Failed reservation (devis)
+  $this->reservationFailed();
+  //Delete reservation (date validite passed)
+  $this->reservationDelOnPassedDateVal();
+
+
+
 }
+
+
+//Failed reservation in devis
+public function reservationFailed()
+{
+  //Query
+  $query =" UPDATE devis SET reservation_status = 'Failed',isDone='not done' WHERE date_validite < CURRENT_DATE AND isDone = 'not done'";
+
+  //Execute
+  $FailedDevis = $this->db->query($query);
+}
+
+public function ReservationSuccess($id)
+{
+  //Query
+  $query = "UPDATE reservation SET isDone = 'done' WHERE id = $id";
+  $execute = $this->db->query($query);
+}
+
+
+
 
 //Data collector function
 public function reservation_data_collect($data){
@@ -62,12 +92,17 @@ public function reservation_data_collect($data){
   $this->date_retour = $data['date_retour'];
   $this->heure_retour = $data['heure_retour'];
   $this->marque_vehicule = $data['marque_vehicule'];
-  $this->immatriculation_vehicule = $data['immatriculation_vehicule'];
-  $this->proprietaire = $data['proprietaire'];
   $this->etat_vehicule = $data['etat_vehicule'];
   $this->assurance = $data['assurance'];
+  $this->n_serie = $data['n_serie'];
+  $this->type_client = $data['type_client'];
+
 
 }
+
+
+
+
 
 
 //Insert new reservation
@@ -81,27 +116,37 @@ public function insert_reservation($data){
   if(!$fetch_client){
     //Query
     $query = "INSERT INTO  clients(nom,prenom,email,date_naissance,telephone,cin,
-                                   adress,ville,pays,n_permis,code_postal)
-                                   VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                                   adress,ville,pays,n_permis,code_postal,type_client)
+                                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
     //Insert new client
-    $new_client = $this->db->insert($query,[$this->nom,$this->prenom,$this->email,$this->date_naissance,$this->telephone,$this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal]);
+    $new_client = $this->db->insert($query,[$this->nom,$this->prenom,$this->email,$this->date_naissance,$this->telephone,$this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$this->type_client]);
     //Query
     $query = "INSERT INTO  reservation(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,n_permis,code_postal,lieu_delivrance,date_delivrance,nb_jour,date_depart,
-                                        heure_depart,date_retour,heure_retour,marque_vehicule,immatriculation_vehicule,proprietaire,
-                                        etat_vehicule,assurance)
-                                         VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                                        heure_depart,date_retour,heure_retour,marque_vehicule,
+                                        etat_vehicule,assurance,n_serie)
+                                         VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     //Insert new reservation
+
+
     $insert_reservation = $this->db->insert($query,[
       $this->nom,$this->prenom,$this->email,$this->date_naissance,$this->telephone,$this->cin,
       $this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$this->lieu_delivrance,
       $this->date_delivrance,$this->nb_jour,$this->date_depart,$this->heure_depart,$this->date_retour,$this->heure_retour,
-      $this->marque_vehicule,$this->immatriculation_vehicule,$this->proprietaire,$this->etat_vehicule,$this->assurance
+      $this->marque_vehicule,$this->etat_vehicule,$this->assurance,$this->n_serie
     ]);
 
+
+    $reservation_id = $this->db->link->lastInsertId();
+
+    $appendArry = [
+      "reservation_id" => $reservation_id
+    ];
+
+    $dataFinal = array_merge($data,$appendArry);
     //Error handling
     if($insert_reservation->rowCount() > 0){
-      return insert_success_message();
+      return   header("Location:../Devis/insert_devis.php?data=".urlencode(serialize($dataFinal))."");
     }else {
       return insert_error_message();
     }
@@ -110,20 +155,28 @@ public function insert_reservation($data){
   }else{
     //Query
     $query = "INSERT INTO  reservation(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,n_permis,code_postal,lieu_delivrance,date_delivrance,nb_jour,date_depart,
-                                        heure_depart,date_retour,heure_retour,marque_vehicule,immatriculation_vehicule,proprietaire,
-                                        etat_vehicule,assurance)
-                                         VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                                        heure_depart,date_retour,heure_retour,marque_vehicule,
+                                        etat_vehicule,assurance,n_serie)
+                                         VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     //Insert new reservation
     $insert_reservation = $this->db->insert($query,[
       $this->nom,$this->prenom,$this->email,$this->date_naissance,$this->telephone,$this->cin,
       $this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$this->lieu_delivrance,
       $this->date_delivrance,$this->nb_jour,$this->date_depart,$this->heure_depart,$this->date_retour,$this->heure_retour,
-      $this->marque_vehicule,$this->immatriculation_vehicule,$this->proprietaire,$this->etat_vehicule,$this->assurance
+      $this->marque_vehicule,$this->etat_vehicule,$this->assurance,$this->n_serie
     ]);
 
+    $reservation_id = $this->db->link->lastInsertId();
+
+    $appendArry = [
+      "reservation_id" => $reservation_id
+    ];
+
+    $dataFinal = array_merge($data,$appendArry);
     //Error handling
     if($insert_reservation->rowCount() > 0){
-      return insert_success_message();
+      return   header("Location:../Devis/insert_devis.php?data=".urlencode(serialize($dataFinal))."");
+
     }else {
       return insert_error_message();
     }
@@ -158,10 +211,9 @@ public function update_reservation($id,$data){
                                    date_retour=?,
                                    heure_retour=?,
                                    marque_vehicule=?,
-                                   immatriculation_vehicule=?,
-                                   proprietaire=?,
                                    etat_vehicule=?,
-                                   assurance=?
+                                   assurance=?,
+                                   n_serie = ?
                                    WHERE id = ?
                                     ";
 
@@ -171,11 +223,11 @@ public function update_reservation($id,$data){
     $this->nom,$this->prenom,$this->email,$this->date_naissance,$this->telephone,$this->cin,
     $this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$this->lieu_delivrance,
     $this->date_delivrance,$this->nb_jour,$this->date_depart,$this->heure_depart,$this->date_retour,$this->heure_retour,
-    $this->marque_vehicule,$this->immatriculation_vehicule,$this->proprietaire,$this->etat_vehicule,$this->assurance,$id  ]);
+    $this->marque_vehicule,$this->etat_vehicule,$this->assurance,$this->n_serie,$id  ]);
 
   //Error handling
-  if($reservation_update->rowCount() > 0){
-    return update_success_message();
+  if($reservation_update){
+    return header("Location:../Devis/devis_edit.php?reservation_id=$id");
   }else{
     return update_error_message();
   }

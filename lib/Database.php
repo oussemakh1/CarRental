@@ -1,6 +1,7 @@
 <?php
     $filepath = realpath(dirname(__FILE__));
     include($filepath .'/../Config/Config.php');
+
 ?>
 
 
@@ -21,7 +22,12 @@ class Database
         public function __construct()
         {
             $this->connectDB();
+            $this->ChangeDevisStat();
+            $this->License();
+
         }
+
+
 
 
         private function connectDB()
@@ -41,6 +47,7 @@ class Database
                 }
 
         }
+
 
 
         public function select($query,array $cols)
@@ -94,6 +101,27 @@ class Database
         public function query($query)
         {
             return $this->link->query($query);
+        }
+
+
+        private function License()
+        {
+
+              $query = "DELETE activation FROM activation WHERE CURRENT_DATE = end_date";
+
+              $prepare = $this->query($query);
+
+        }
+
+
+        private function ChangeDevisStat()
+        {
+          //Query
+          $query = "UPDATE devis set devis_status ='Failed' WHERE date_validite < CURRENT_DATE ";
+
+          //Exectute
+          $update_devis = $this->query($query);
+
         }
 
 

@@ -2,22 +2,19 @@
 
 //include  database
 include_once '../../lib/Database.php';
-//include messages
-include '../../lib/messages.php';
+
 
 
 class Reparation{
 
 private $db;
-private $immatriculation;
 private $marque;
 private $model;
-private $type_vehicule;
 private $date_mise_circulation;
 private $date_entree_garage;
 private $date_sortie_garage;
-private $kilometrage;
-private $niveau_essence;
+private $montant;
+private $panne;
 private $n_serie;
 //Execute database connection
 public function __construct(){
@@ -27,16 +24,15 @@ public function __construct(){
 //Data collector function
 public function reparation_data_collector($data){
 
-  $this->immatriculation = $data['immatriculation'];
+  $this->mecanicien = $data['mecanicien'];
   $this->marque = $data['marque'];
   $this->model = $data['model'];
-  $this->type_vehicule = $data['type_vehicule'];
   $this->date_mise_circulation = $data['date_mise_circulation'];
   $this->date_entree_garage = $data['date_entree_garage'];
   $this->date_sortie_garage = $data['date_sortie_garage'];
-  $this->kilometrage = $data['kilometrage'];
-  $this->niveau_essence = $data['niveau_essence'];
   $this->n_serie = $data['n_serie'];
+  $this->montant= $data['montant'];
+  $this->panne = $data['panne'];
 
 }
 
@@ -47,15 +43,15 @@ public function insert_reparation($data){
   $this->reparation_data_collector($data);
 
   //Query
-  $query = "INSERT INTO reparation(immatriculation,marque,model,
-                        type_vehicule,date_mise_circulation,date_entree_garage,
-                        date_sortie_garage,kilometrage,niveau_essence,n_serie)
-                        VALUES(?,?,?,?,?,?,?,?,?,?)";
+  $query = "INSERT INTO reparation(mecanicien,marque,model,
+                      date_mise_circulation,date_entree_garage,
+                        date_sortie_garage,n_serie,montant,panne)
+                        VALUES(?,?,?,?,?,?,?,?,?)";
   //Insert reparation
   $new_reparation = $this->db->insert($query,[
-    $this->immatriculation,$this->marque,$this->model,$this->type_vehicule,$this->date_mise_circulation,
+    $this->mecanicien,$this->marque,$this->model,$this->date_mise_circulation,
     $this->date_entree_garage,$this->date_sortie_garage,
-    $this->kilometrage,$this->niveau_essence,$this->n_serie
+    $this->n_serie,$this->montant,$this->panne
   ]);
 
   //Error handling
@@ -73,29 +69,27 @@ public function update_reparation($id,$data){
   $this->reparation_data_collector($data);
 
   //Query
-  $query = "UPDATE reparation SET immatriculation=?,
+  $query = "UPDATE reparation SET mecanicien=?,
                                   marque=?,
                                   model=?,
-                                  type_vehicule=?,
                                   date_mise_circulation=?,
                                   date_entree_garage=?,
                                   date_sortie_garage=?,
-                                  kilometrage=?,
-                                  niveau_essence=?,
-                                  n_serie=?
+                                  n_serie=?,
+                                  montant = ?,
+                                  panne = ?
                                   WHERE id = ?
                                   ";
 
   //Update reparation
   $reparation_update = $this->db->update($query,[
-    $this->immatriculation,$this->marque,$this->model,$this->type_vehicule,$this->date_mise_circulation,
+    $this->mecanicien,$this->marque,$this->model,$this->date_mise_circulation,
     $this->date_entree_garage,$this->date_sortie_garage,
-    $this->kilometrage,$this->niveau_essence,$this->n_serie,$id
+    $this->n_serie,$this->montant,$this->panne,$id
   ]);
 
   //Error handling
   if($reparation_update){
-    return update_success_message();
   }else{
     return update_error_message();
   }
@@ -148,5 +142,19 @@ public function fetch_allReparation(){
   }
 }
 
+
+//Fetch mecanicien
+public function fetch_allMecanicien()
+{
+  //Query
+  $query = "SELECT * FROM fournisseur WHERE service = 'reparation'";
+
+  //Execute
+  $fetch_mecanicien = $this->db->query($query);
+
+  if($fetch_mecanicien){
+    return $fetch_mecanicien->fetchAll();
+  }
+}
 
 }

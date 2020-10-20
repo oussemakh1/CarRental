@@ -1717,7 +1717,7 @@ Left Navigation Sidebar
     padding-left: 12px;
     padding-right: 12px;
     /* margin-top: 5px; */
-    background: #24274a;
+    background: #ffff;
 }
 
 .nav-left-sidebar .submenu .nav .nav-item .nav-link {
@@ -1728,7 +1728,7 @@ Left Navigation Sidebar
 
 .nav-left-sidebar .navbar-nav .nav-link:focus,
 .nav-left-sidebar .navbar-nav .nav-link.active {
-    background-color: #e2e2eb;
+    background-color: white;
     color: #3d405c;
     border-radius: 2px;
 }

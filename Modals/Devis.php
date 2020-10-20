@@ -17,14 +17,14 @@ class Devis{
   private $adress_client;
   private $telephone;
   private $codepostal_client;
-  private $reference_devis;
-  private $designation_devis;
   private $nb_jour;
   private $prix;
   private $remise;
   private $total;
   private $date_devis;
   private $date_validite;
+  private $cin;
+  private $reservation_id;
 
 
   //Execute database connection
@@ -40,14 +40,15 @@ class Devis{
     $this->prenom_client = $data['prenom_client'];
     $this->adress_client = $data['adress_client'];
     $this->codepostal_client = $data['codepostal_client'];
-    $this->reference_devis = $data['reference_devis'];
-    $this->designation_devis = $data['designation_devis'];
+    $this->cin = $data['cin'];
+    $this->reservation_id = $data['reservation_id'];
     $this->nb_jour = $data['nb_jour'];
     $this->prix = $data['prix'];
     $this->remise = $data['remise'];
     $this->total = $data['total'];
     $this->date_devis = $data['date_devis'];
     $this->date_validite =  $data['date_validite'];
+
 
 
     /** Filtring data
@@ -65,8 +66,7 @@ public function insert_devis($data){
   $this->devis_data_collector($data);
 
   //Query
-  $query = "INSERT INTO  devis(nom_client,prenom_client,adress_client,codepostal_client,
-                               reference_devis,designation_devis,nb_jour,prix,remise,total,date_devis,date_validite)
+  $query = "INSERT INTO  devis(nom_client,prenom_client,adress_client,codepostal_client,nb_jour,prix,remise,total,date_devis,date_validite,cin,reservation_id)
                                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
                                ";
 
@@ -76,14 +76,14 @@ public function insert_devis($data){
     $this->prenom_client,
     $this->adress_client,
     $this->codepostal_client,
-    $this->reference_devis,
-    $this->designation_devis,
     $this->nb_jour,
     $this->prix,
     $this->remise,
     $this->total,
     $this->date_devis,
-    $this->date_validite
+    $this->date_validite,
+    $this->cin,
+    $this->reservation_id
    ]);
 
   //Error handling
@@ -97,7 +97,7 @@ public function insert_devis($data){
 }
 
 //Update devis
-public function update_devis($id,$data){
+public function update_devis($reservation_id,$data){
   //Data collector
   $this->devis_data_collector($data);
 
@@ -106,15 +106,14 @@ public function update_devis($id,$data){
                              prenom_client = ?,
                              adress_client = ?,
                              codepostal_client=?,
-                             reference_devis=?,
-                             designation_devis=?,
                              nb_jour=?,
                              prix=?,
                              remise=?,
                              total=?,
                              date_devis=?,
-                             date_validite=?
-                             WHERE id = ?
+                             date_validite=?,
+                             cin = ?
+                             WHERE reservation_id = ?
                              ";
   //Update devis
   $devis_update = $this->db->update($query,[
@@ -122,16 +121,15 @@ public function update_devis($id,$data){
     $this->prenom_client,
     $this->adress_client,
     $this->codepostal_client,
-    $this->reference_devis,
-    $this->designation_devis,
     $this->nb_jour,
     $this->prix,
     $this->remise,
     $this->total,
     $this->date_devis,
     $this->date_validite,
-    $id
-  ]);
+    $this->cin,
+    $reservation_id
+]);
 
   //Error handling
   if($devis_update){
@@ -161,12 +159,12 @@ public function delete_devis($id){
 
 
 //Get devis
-public function fetch_devis($id){
+public function fetch_devis($reservation_id){
 
   //query
-  $query = "SELECT * FROM devis WHERE id = ?";
+  $query = "SELECT * FROM devis WHERE reservation_id = ?";
 
-  $fetch_devis = $this->db->select($query,[$id]);
+  $fetch_devis = $this->db->select($query,[$reservation_id]);
 
   if($fetch_devis){
     return $fetch_devis->fetch();
@@ -190,5 +188,9 @@ public function fetch_allDevis(){
   }
 
 }
+
+
+
+
 
 }

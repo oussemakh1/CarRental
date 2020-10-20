@@ -1,4 +1,48 @@
+<?php
 
+  //Cars Controller
+  include '../../Controllers/CarsController.php';
+  //Fournisseur Controller
+  include '../../Controllers/FournisseurController.php';
+
+
+  $fournisseurs = new FournisseurController();
+
+  $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
+
+if(isset($_POST['insert_car']))
+{
+
+  $data = [
+    "fournisseur" =>$_POST['fournisseur'],
+    "marque"=>$_POST['marque'],
+    "model"=>$_POST['model'],
+    "carburant"=>  $_POST['carburant'],
+    "date_achat"=>    $_POST['date_achat'],
+    "duree_vie" => $_POST['duree_vie'],
+    "nb_km_avant_revision" =>$_POST['nb_km_avant_revision'],
+    "prix_achat_ht" =>   $_POST['prix_achat_ht'],
+    "montant_traites_mensuel" =>   $_POST['montant_traites_mensuel'],
+    "nombre_traites" =>     $_POST['nombre_traites'],
+    "num_facture_fournisseur" =>   $_POST['num_facture_fournisseur'],
+    "color" =>  $_POST['color'],
+    "type_vehicule" => $_POST['type_vehicule'],
+    "n_assurance" =>  $_POST['n_assurance'],
+    "detail_reparation" => $_POST['detail_reparation'],
+    "n_serie" => $_POST['n_serie'],
+    "carte_grise" => $_POST['carte_grise'],
+    "prix_achat_ttc" => $_POST['prix_achat_ht'] * (1 + ($_POST['tva'] / 100)),
+    "tva" => $_POST['tva']
+  ];
+
+  $carController = new CarsController();
+  $carController->insertCar($data);
+  header("Location:Vehicules.php");
+
+}
+
+
+?>
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -21,21 +65,28 @@
         <!-- ============================================================== -->
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="section-block" id="basicform">
-                    <h3 class="section-title">Basic Form Elements</h3>
-                    <p>Use custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p>
-                </div>
                 <div class="card">
-                    <h5 class="card-header">Basic Form</h5>
+                    <h5 class="card-header">Insertion vehicule</h5>
                     <div class="card-body">
-                        <form>
+                        <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST">
                           <!-- row 1 -->
                           <div class="row">
 
                             <div class="form-group col-md-3">
                                 <label for="input-select">Fournisseur</label>
                                 <select name = "fournisseur" class="form-control" id="input-select">
-                                    <option>Choose Example</option>
+                                  <?php foreach($fournisseur_list as $fournisseur): ?>
+                                    <option value="<?php if(!empty($fournisseur)){
+                                      echo $fournisseur['societe'];
+                                    }else{
+                                      echo $fournisseur['civilite'];
+                                    } ?>
+                                    "><?php if(!empty($fournisseur)){
+                                      echo $fournisseur['societe'];
+                                    }else{
+                                      echo $fournisseur['civilite'];
+                                    } ?></option>
+                                  <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -49,7 +100,9 @@
                             <div class="form-group col-md-3">
                                 <label for="input-select">Carburant</label>
                                 <select  name="carburant" class="form-control" >
-                                    <option>Choose Example</option>
+                                    <option>Essance</option>
+                                    <option>Mazout</option>
+
                                 </select>
                             </div>
 
@@ -81,21 +134,17 @@
                           <!-- row  3-->
                           <div class="row mt-2">
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label  >Prix d'achat HT</label>
                                 <input name="prix_achat_ht" type="number" class="form-control" placeholder="prix d'achat hors tva...">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label >TVA</label>
                                 <input name="tva" type="number" class="form-control" placeholder="%">
                             </div>
 
-                            <div class="form-group col-md-4">
-                                <label>Prix d'achat TTC
-                                </label>
-                                <input name="prix_achat_ttc" type="number" class="form-control currency-inputmask" id="currency-mask" placeholder="prix d'achat ttc..." disabled>
-                            </div>
+
 
 
                           </div>
@@ -143,7 +192,7 @@
                                                       <div class="form-group col-md-3">
                                                           <label>N°serie
                                                           </label>
-                                                          <input name="n_serie" type="number" class="form-control currency-inputmask" id="currency-mask" placeholder="N° serie ..." >
+                                                          <input name="n_serie" type="text" class="form-control currency-inputmask" id="currency-mask" placeholder="N° serie ..." >
                                                       </div>
                                                       <div class="form-group col-md-3">
                                                           <label>N°facture
@@ -168,7 +217,7 @@
 
                                                                                                         </div>
                                                     <div class="text-center mt-4">
-                                                    <input name="update_car" type="submit" value="Modifier" class="btn btn-outline-success">
+                                                    <input name="insert_car" type="submit" value="Inserée" class="btn btn-outline-success">
                                                   </div>
 
 

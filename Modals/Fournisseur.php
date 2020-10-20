@@ -2,8 +2,7 @@
 
   //include database
   include_once '../../lib/Database.php';
-  //include messages
-  include '../../lib/messages.php';
+
 
 class Fournisseur{
 
@@ -12,7 +11,7 @@ private $societe;
 private $civilite;
 private $nom_contact;
 private $prenom_contact;
-private $adresse;
+private $adress;
 private $code_postal;
 private $ville;
 private $pays;
@@ -21,6 +20,7 @@ private $gsm;
 private $fax;
 private $email;
 private $observation;
+private $service;
 
 //Execute database connection
 public function __construct(){
@@ -36,7 +36,7 @@ public function fournisseur_data_collect($data){
   $this->civilite = $data['civilite'];
   $this->nom_contact = $data['nom_contact'];
   $this->prenom_contact = $data['prenom_contact'];
-  $this->adresse = $data['adresse'];
+  $this->adress = $data['adress'];
   $this->code_postal = $data['code_postal'];
   $this->ville = $data['ville'];
   $this->pays = $data['pays'];
@@ -45,6 +45,7 @@ public function fournisseur_data_collect($data){
   $this->fax = $data['fax'];
   $this->email = $data['email'];
   $this->observation = $data['observation'];
+  $this->service = $data['service'];
 
 }
 
@@ -57,19 +58,19 @@ public function insert_fournisseur($data){
   $this->fournisseur_data_collect($data);
 
   //Query
-  $query = "INSERT INTO  fournisseur(societe,civilite,nom_contact,prenom_contact,adresse,code_postal,ville,pays,telephone,gsm,fax,email,observation)
-                         VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $query = "INSERT INTO  fournisseur(societe,civilite,nom_contact,prenom_contact,adress,code_postal,ville,pays,telephone,gsm,fax,email,observation,service)
+                         VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   //Insert new fournisseur
   $new_fournisseur = $this->db->insert($query,[
-    $this->societe,$this->civilite,$this->nom_contact,$this->prenom_contact,$this->adresse,$this->code_postal,$this->ville,$this->pays,$this->telephone,$this->gsm,$this->fax,$this->email,$this->observation
+    $this->societe,$this->civilite,$this->nom_contact,$this->prenom_contact,$this->adress,$this->code_postal,$this->ville,$this->pays,$this->telephone,$this->gsm,$this->fax,$this->email,$this->observation,$this->service
   ]);
 
 
   //Error handling
   if($new_fournisseur->rowCount() > 0){
-    return insert_success_message();
+    return header('Location:fournisseurs.php');
   }else{
-    return insert_error_message();
+
   }
 
 
@@ -88,7 +89,7 @@ public function update_fournisseur($id,$data){
                                    civilite=?,
                                    nom_contact=?,
                                    prenom_contact=?,
-                                   adresse = ?,
+                                   adress = ?,
                                    code_postal=?,
                                    ville =?,
                                    pays=?,
@@ -96,7 +97,8 @@ public function update_fournisseur($id,$data){
                                    gsm=?,
                                    fax=?,
                                    email=?,
-                                   observation=?
+                                   observation=?,
+                                   service = ?
                                    WHERE id = ?
                                    ";
   //Update fournisseur
@@ -104,17 +106,17 @@ public function update_fournisseur($id,$data){
 
     $this->societe,$this->civilite,
     $this->nom_contact,$this->prenom_contact,
-    $this->adresse,$this->code_postal,$this->ville,
+    $this->adress,$this->code_postal,$this->ville,
     $this->pays,$this->telephone,$this->gsm,$this->fax,
-    $this->email,$this->observation,$id
+    $this->email,$this->observation,$this->service,$id
 
   ]);
 
   //Error handling
   if($fournisseur_update){
-    return update_success_message();
+    return header("Location:fournisseurs.php");
   }else{
-    return update_error_message();
+
   }
 
 }
@@ -171,6 +173,43 @@ public function fetch_allFournisseur(){
 }
 
 
+
+//Fetch fournisseur By service
+public function fetchFournisseurByService($service)
+{
+    if($service == 'vente'){
+      //Query
+      $query = "SELECT * FROM cars INNER JOIN fournisseur ON fournisseur.societe = cars.fournisseur OR fournisseur.civilite = cars.fournisseur WHERE fournisseur.service = '$service'";
+    }elseif($service == 'reparation'){
+      //Query
+      $query = "SELECT * FROM reparation INNER JOIN fournisseur ON fournisseur.societe = reparation.mecanicien OR fournisseur.civilite = reparation.mecanicien WHERE fournisseur.service = '$service'";
+    }
+
+
+  //Execute
+  $fetchFournisseur = $this->db->query($query);
+
+  if($fetchFournisseur){
+    return $fetchFournisseur->fetchAll();
+  }else{
+    return 0;
+  }
+}
+
+//Fetch fournisseur name by fournisseur
+public function fetchAllFournisseurByservice($service)
+{
+  //Query
+  $query = "SELECT societe,civilite FROM fournisseur WHERE service = '$service'";
+
+  $fetch = $this->db->query($query);
+  if($fetch)
+  {
+    return $fetch->fetchAll();
+  }else{
+    return false;
+  }
+}
 
 }
 ?>

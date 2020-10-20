@@ -3,8 +3,7 @@
 
 //Include database
 include_once '../../lib/Database.php';
-//include message
-include '../../lib/messages.php';
+
 
 
 class Contraventions{
@@ -95,10 +94,10 @@ public function update_contravention($id,$data){
   ]);
 
   //Error handling
-  if($contravention_update->rowCount() > 0){
-    return update_success_message();
+  if($contravention_update){
+    return header("Location:contravention_info.php?id=$id");
   }else{
-    return update_error_message();
+    return false;
   }
 
 

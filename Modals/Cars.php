@@ -61,7 +61,7 @@ private function cars_data_collect($data){
   $this->carte_grise = $data['carte_grise'];
 
 
-  // Filtring data
+  /*Filtring data
 
   if(empty($this->fournisseur)){
     return empty_field('fournisseur');
@@ -116,7 +116,7 @@ private function cars_data_collect($data){
   }
   elseif(empty($this->carte_grise)){
     return empty_field('carte grise');
-  }
+  }*/
 
 
 
@@ -132,7 +132,7 @@ public function insert_car($data){
     //check if car already exists else insert it into database
     $query ="SELECT n_serie FROM cars WHERE n_serie = ?";
     $fetch_car = $this->db->select($query,[$this->n_serie]);
-    if($fetch_car->rowCount()>0){
+    if($fetch_car){
       return error_message('ce véhicule déjà existe!');
     }else{
 
@@ -140,7 +140,7 @@ public function insert_car($data){
       $query = "INSERT INTO cars (fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,
         prix_achat_ht,tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,
         type_vehicule,categorie,n_assurance,detail_reparation,n_serie,carte_grise
-      ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
       //Insert new car
       $new_car = $this->db->insert($query,[
@@ -163,14 +163,14 @@ public function insert_car($data){
         $this->n_assurance,
         $this->detail_reparation,
         $this->n_serie,
-        $this->carte_grise,
-        $this->img
+        $this->carte_grise
+
       ]);
       //Error handling
-      if($new_car->rowCount() > 0){
-        return insert_success_message();
+      if($new_car){
+        return header("Location:../Vehicules/Vehicules_all.php");
       }else{
-        return insert_error_message();
+
       }
 
 
@@ -277,6 +277,8 @@ public function get_CarById($id){
     return error_message("ce véhicule n'existe pas");
   }
 }
+
+
 
 
 //Get all cars function

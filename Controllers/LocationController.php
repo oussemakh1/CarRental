@@ -32,7 +32,18 @@ public function insert_location($data){
 }
 
 
+//Update location
+public function update_location($id,$data){
+  $location = new Location();
+  return $location->update_location($id,$data);
+}
 
+
+//Delete location
+public function delete_location($id){
+  $location = new Location();
+  return $location->delete_location($id);
+}
 
 }
 

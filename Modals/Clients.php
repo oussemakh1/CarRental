@@ -7,7 +7,7 @@ include_once $file_path.'../../lib/Database.php';
 //include Messages
 include_once $file_path.'../../lib/messages.php';
 
-class Client{
+class Clients{
 
 private $db;
 private $nom;
@@ -21,6 +21,7 @@ private  $ville;
 private  $pays;
 private  $n_permis;
 private  $code_postal;
+private $type_client;
 
 //Execute database connection
 public function __construct(){
@@ -44,6 +45,7 @@ private function clients_data_collect($data){
   $this->pays = $data['pays'];
   $this->n_permis = $data['n_permis'];
   $this->code_postal = $data['code_postal'];
+  $this->type_client = $data['type_client'];
   /** Filtring data
 
 
@@ -66,31 +68,33 @@ public function insert_client($data){
   $query ="SELECT cin FROM clients WHERE cin = ?";
   $fetch_client = $this->db->select($query,[$this->cin]);
 
-  if($fetch_client->rowCount() > 0 ){
+  if($fetch_client){
     return error_message('ce client déjà existe!');
   }else{
 
       //Query
-      $query = "INSERT INTO  clients(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,n_permis,code_postal)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+      $query = "INSERT INTO  clients(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,n_permis,code_postal,type_client)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
       //Insert new client
       $new_client = $this->db->insert($query,[$this->nom,$this->prenom,$this->email,$this->date_naissance,
-                                              $this->telephone,$this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal]);
+                                              $this->telephone,$this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$this->type_client]);
 
       //Error handling
       if($new_client){
-        return insert_success_message();
+        return header("Location:clients.php");
       }else{
-        return insert_error_message();
-      }}
+        return false;
+      }
+
+    }
 
 
 }
 
 
 //Update client function
-public function update_client($id,$data){
+public function update_client($cin,$data){
   //Data Collection
   $this->clients_data_collect($data);
 
@@ -105,13 +109,14 @@ public function update_client($id,$data){
                                ville=?,
                                pays=?,
                                n_permis=?,
-                               code_postal=?
-                               WHERE id = ?
+                               code_postal=?,
+                               type_client = ?
+                               WHERE cin = ?
                                ";
   //Update client
   $client_update = $this->db->update($query ,[
     $this->nom,$this->prenom,$this->email,$this->date_naissance,$this->telephone,
-    $this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$id
+    $this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$type_client,$cin
   ]);
 
   //Error Handeling
@@ -124,9 +129,9 @@ public function update_client($id,$data){
 
 
 //Delete client function
-public function delete_client($id){
+public function delete_client($cin){
   //Query
-  $query =  "DELETE  FROM clients WHERE id = ?";
+  $query =  "DELETE  FROM clients WHERE cin = ?";
 
   //Delete client
   $client_delete = $this->db->delete($query,[$id]);
@@ -142,12 +147,12 @@ public function delete_client($id){
 
 
 //Fetch client function
-public function fetch_client($id){
+public function fetch_client($cin){
 
   //query
-  $query = "SELECT * FROM clients WHERE id =?";
+  $query = "SELECT * FROM clients WHERE cin =?";
 
-  $fetch_client = $this->db->select($query,[$id]);
+  $fetch_client = $this->db->select($query,[$cin]);
 
   if($fetch_client){
     return $fetch_client->fetch();
@@ -173,6 +178,40 @@ public function  fetch_allClients(){
       return error_message("il n'y a pas des clients pour le moment!");
     }
 }
+
+//Reservation history
+public function reservationHistory($cin)
+{
+  //Query
+  $query = "SELECT * FROM reservation WHERE cin = ?";
+
+  //Execute
+  $reservation_history = $this->db->select($query,[$cin]);
+
+  if($reservation_history){
+    return $reservation_history->fetchAll();
+  }else{
+    return 0;
+  }
+}
+
+
+//Location history
+public function locationHistory($cin)
+{
+  //Query
+  $query ="SELECT * FROM location WHERE cin = ?";
+
+  //Execute
+  $location_history = $this->db->select($query,[$cin]);
+
+  if($location_history){
+    return $location_history->fetchAll();
+  }else{
+    return 0;
+  }
+}
+
 
 
 }

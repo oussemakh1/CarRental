@@ -26,8 +26,9 @@ class CarsController{
     //Query
     $query = "SELECT * FROM cars WHERE cars.n_serie
                                  NOT IN(SELECT reparation.n_serie FROM reparation WHERE reparation.date_sortie_garage > CURRENT_DATE())
-                                 AND cars.n_serie NOT IN(SELECT n_serie FROM location WHERE location.date_retour > CURRENT_DATE())
-                                 ";
+                                 AND cars.n_serie NOT IN(SELECT n_serie FROM location WHERE location.date_retour > CURRENT_DATE() AND location.etat_vehicule = 'panne')
+                                 AND cars.n_serie NOT IN(SELECT n_serie FROM reservation WHERE reservation.date_retour > CURRENT_DATE())
+                                 ORDER BY id DESC ";
 
     $fetch_cars = $this->db->query($query);
     if($fetch_cars){
@@ -51,6 +52,12 @@ class CarsController{
     $car = new Cars();
     return $car->get_CarById($id);
 
+  }
+
+  //Insert car
+  public function insertCar($data){
+    $car = new Cars();
+    return $car->insert_car($data);
   }
 
   //Update car
@@ -141,7 +148,7 @@ class CarsController{
 
     //Query
     $query = "SELECT cars.id as carId,cars.n_serie,location.id as locationId,location.marque_vehicule,location.type_client,location.date_depart,location.date_retour,location.heure_retour,location.nb_jour
-              FROM cars INNER JOIN location ON cars.n_serie = (SELECT location.n_serie FROM reservation WHERE location.date_retour > CURRENT_DATE())";
+              FROM cars INNER JOIN location ON cars.n_serie = (SELECT location.n_serie FROM location WHERE location.date_retour > CURRENT_DATE())";
 
     //Fetch
     $fetch_car = $this->db->query($query);
@@ -183,7 +190,7 @@ class CarsController{
         return $history_data;
 
     }else{
-      return error_message("no history here!");
+      return false;
     }
   }
 
@@ -231,7 +238,7 @@ class CarsController{
     //Cars in reparation
     public function cars_reparation(){
 
-        $query = "SELECT *
+        $query = "SELECT *,reparation.id as repId
                   FROM  cars INNER JOIN reparation ON  cars.n_serie =  (SELECT reparation.n_serie FROM reservation WHERE reparation.date_sortie_garage > CURRENT_DATE()) " ;
 
         $fetch_data = $this->db->query($query);
@@ -279,9 +286,24 @@ class CarsController{
       return error_message('none');
     }
   }
+
+
+
+//Contravention
+public function car_contraventionHistory($n_serie)
+{
+  //Query
+  $query = "SELECT * FROM contraventions WHERE n_serie = '$n_serie' ORDER BY id DESC";
+
+  //Fetch
+  $fetch = $this->db->query($query);
+
+  if($fetch){
+    return $fetch->fetchAll();
+  }
 }
 
-
+}
 
 
 

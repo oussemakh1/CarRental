@@ -3,25 +3,17 @@
 
   //include databae
   include_once '../../lib/Database.php';
-  //include messages
-  include '../../lib/messages.php';
 
-  ?>
 
-<?php
+
 class Facture {
 
 private $db;
-private $societe_client;
 private $nom_client;
 private $prenom_client;
 private $telephone;
 private $code_postal_client;
 private $nom_adress_fact;
-private $adress_fact;
-private $code_postal_fact;
-private $reference_fact;
-private $designation_fact;
 private $nb_jour;
 private $prix;
 private $tva;
@@ -32,6 +24,8 @@ private $date_reglement;
 private $date_acompte;
 private $mode_reglement;
 private $mode_livraison;
+private $location_id;
+private $cin;
 
 //Execute database connection
 public function __construct(){
@@ -42,15 +36,11 @@ public function __construct(){
 //Data collector
 public function facture_data_collector($data){
 
-  $this->societe_client = $data['societe_client'];
   $this->nom_client = $data['nom_client'];
   $this->prenom_client = $data['prenom_client'];
   $this->telephone_client = $data['telephone_client'];
   $this->code_postal_client = $data['code_postal_client'];
   $this->nom_adress_fact = $data['nom_adress_fact'];
-  $this->code_postal_fact = $data['code_postal_fact'];
-  $this->reference_fact = $data['reference_fact'];
-  $this->designation_fact = $data['designation'];
   $this->nb_jour = $data['nb_jour'];
   $this->prix = $data['prix'];
   $this->tva = $data['tva'];
@@ -61,6 +51,8 @@ public function facture_data_collector($data){
   $this->date_acompte = $data['date_acompte'];
   $this->mode_reglement = $data['mode_reglement'];
   $this->mode_livraison = $data['mode_livraison'];
+  $this->location_id = $data['location_id'];
+  $this->cin = $data['cin'];
 
 
   /** Filtring data
@@ -79,22 +71,21 @@ public function insert_facture($data){
     $this->facture_data_collector($data);
 
     //Query
-    $query = "INSERT INTO facture(societe_client,nom_client,prenom_client,telephone_client,
-                                  code_postal_client,nom_adress_fact,code_postal_fact,reference_fact,
-                                  designation_fact,nb_jour,prix,tva,total,date_fact,date_reglement,date_acompte,mode_reglement,mode_livraison)
-                          VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    $query = "INSERT INTO facture(nom_client,prenom_client,telephone_client,
+                                  code_postal_client,nom_adress_fact,
+                                  nb_jour,prix,tva,total,date_fact,date_reglement,date_acompte,mode_reglement,mode_livraison,location_id,cin)
+                          VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                                   ";
 
     //Insert facture
     $new_facture = $this->db->insert($query,[
-       $this->societe_client,$this->nom_client,$this->prenom_client,$this->telephone_client,
-                                     $this->code_postal_client,$this->nom_adress_fact,$this->code_postal_fact,$this->reference_fact,
-                                     $this->designation_fact,$this->nb_jour,$this->prix,$this->tva,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison
+      $this->nom_client,$this->prenom_client,$this->telephone_client,
+                                     $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
+                                     $this->location_id,$this->cin
      ]);
 
    //Error Handeling
    if($new_facture->rowCount() > 0){
-     return insert_success_message();
    }else{
      return insert_error_message();
    }
@@ -109,15 +100,12 @@ public function update_facture($id,$data){
   $this->facture_data_collector($data);
 
   //Query
-  $query = "UPDATE facture SET societe_client =?,
+  $query = "UPDATE facture SET
                                nom_client=?,
                                prenom_client=?,
                                telephone_client=?,
                                code_postal_client=?,
                                nom_adress_fact=?,
-                               code_postal_fact=?,
-                               reference_fact=?,
-                               designation_fact=?,
                                nb_jour=?,
                                prix=?,
                                tva=?,
@@ -126,7 +114,9 @@ public function update_facture($id,$data){
                                date_reglement=?,
                                date_acompte=?,
                                mode_reglement=?,
-                               mode_livraison=?
+                               mode_livraison=?,
+                               location_id=?,
+                               cin=?
                                WHERE id =?
                                ";
 
@@ -135,14 +125,13 @@ public function update_facture($id,$data){
 
   //Update facture
   $facture_update = $this->db->update($query,[
-    $this->societe_client,$this->nom_client,$this->prenom_client,$this->telephone_client,
-    $this->code_postal_client,$this->nom_adress_fact,$this->code_postal_fact,$this->reference_fact,
-    $this->designation_fact,$this->nb_jour,$this->prix,$this->tva,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,$id
+    $this->nom_client,$this->prenom_client,$this->telephone_client,
+    $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
+    $this->locaiton_id,$this->cin,$id
   ]);
 
   //Error handling
   if($facture_update){
-    return update_success_message();
   }else{
     return update_error_message();
   }
@@ -169,11 +158,11 @@ public function delete_facture($id){
 //Fetch facture by id
 public function fetch_facture($id){
   //Query
-  $query  = "SELECT * FROM facture WHERE id = ?";
+  $query  = "SELECT * FROM facture WHERE location_id = ?";
 
   $fetch_facture = $this->db->select($query,[$id]);
 
-  if($fetch_facture->rowCount()> 0){
+  if($fetch_facture){
     return $fetch_facture->fetch();
   }else{
     return error_message("cette facture n'existe pas");
@@ -192,5 +181,18 @@ public function fetch_AllFacture(){
     return error_message("il n'y a pas des factures pour le moment!");
   }
 }
+
+
+//Change facture status  failed
+public function ChangeStatFailed($location_id)
+{
+      //Query
+      $query = "UPDATE facture SET facture_stat = 'Failed' WHERE location_id = ? ";
+
+      //Execute changement
+      $changeFailed = $this->db->insert($query,[$location_id]);
+}
+
+
 
 }
