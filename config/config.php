@@ -1,6 +1,6 @@
 <?php
 
-define("DB_HOST","localhost");
-define("DB_USER","root");
-define("DB_PASS","root");
-define("DB_NAME","car_rental");
+define("DB_HOST","eu-mm-auto-dub-02-a.cleardb.net");
+define("DB_USER","b27f77a5717a58");
+define("DB_PASS","348e953d");
+define("DB_NAME","heroku_7fcd9f5a485dfb3");
