@@ -18,8 +18,6 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
     $clientController = new ClientController();
 
 
-    //Inherit reservation controller
-    $reservationController = new ReservationController();
 
    //Inherit location controller
    $locationController = new LocationController();
@@ -54,9 +52,8 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
 
 
-    }else{
-      header("Location:Location_insert.php");
-    }
+
+
     //Insert Location
     if(isset($_POST['insert_location']))
     {
@@ -98,15 +95,122 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
         "n_serie"=>$_POST['n_serie']
       ];
 
+    if(isset($_GET['reservation_id'])){
+      $reservation_id = $_GET['reservation_id'];
+      $reservationController = new ReservationController();
+          $changeReservationStatus = $reservationController->ReservationSuccess($reservation_id);
 
+    }
 
 
       $locationController = new LocationController();
-      $reservationController = new ReservationController();
         $insertCar = $locationController->insert_location($data);
-        $changeReservationStatus = $reservationController->ReservationSuccess($reservation_id);
+
 
       }
+  }elseif(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
+
+    $id = $_GET['id'];
+    //Client Controller
+    include '../../Controllers/ClientController.php';
+    //Location Controller
+    include '../../Controllers/LocationController.php';
+    //Reservation controller
+    include '../../Controllers/ReservationController.php';
+
+    include '../../lib/DateFunc.php';
+
+
+
+      //Inherit client controller
+      $clientController = new ClientController();
+
+
+
+     //Inherit location controller
+     $locationController = new LocationController();
+
+
+    //Get car data
+    $marque_vehicule = $_GET['marque_vehicule'];
+    $n_serie = $_GET['n_serie'];
+
+    $find_Client = $clientController->getClientByCin($id);
+
+
+        $nom = $find_Client['nom'];
+        $prenom = $find_Client['prenom'];
+        $email = $find_Client['email'];
+        $date_naissance = $find_Client['date_naissance'];
+        $telephone = $find_Client['telephone'];
+        $cin = $find_Client['cin'];
+        $adress = $find_Client['adress'];
+        $ville = $find_Client['ville'];
+        $pays =$find_Client['pays'];
+        $n_permis = $find_Client['n_permis'];
+        $code_postal = $find_Client['code_postal'];
+        $type_client = $find_client['type_client'];
+
+
+
+
+
+
+
+
+
+
+
+
+      //Insert Location
+      if(isset($_POST['insert_location']))
+      {
+
+        $data = [
+
+          "nom"=>$_POST['nom'],
+          "prenom"=>$_POST['prenom'],
+          "date_naissance"=>$_POST['date_naissance'],
+          "adress"=>$_POST['adress'],
+          "code_postal" =>$_POST['code_postal'],
+          "ville"=>$_POST['ville'],
+          "pays"=>$_POST['pays'],
+          "telephone"=>$_POST['telephone'],
+          "email"=>$_POST['email'],
+          "n_permis"=>$_POST['n_permis'],
+          "date_delivrance"=>$_POST['date_delivrance'],
+          "lieu_delivrance"=>$_POST['lieu_delivrance'],
+          "cin"=>$_POST['cin'],
+          "type_client"=>$_POST['type_client'],
+          "marque_vehicule"=>$_POST['marque_vehicule'],
+          "etat_vehicule"=>$_POST['etat_vehicule'],
+          "assurance"=>$_POST['assurance'],
+          "caution"=>$_POST['caution'],
+          "mode_paiement"=>$_POST['mode_paiement'],
+          "nb_jour"=>dateDiff($_POST['date_retour'],$_POST['date_depart']),
+          "date_depart"=>$_POST['date_depart'],
+          "heure_depart"=>$_POST['heure_depart'],
+          "date_retour"=>$_POST['date_retour'],
+          "heure_retour"=>$_POST['heure_retour'],
+          "prix_ht"=>$_POST['prix_ht'],
+          "tva"=>$_POST['tva'],
+          "prix_ttc"=>$_POST['prix_ttc'],
+          "paye_le"=>$_POST['paye_le'],
+          "deja_regle_acompte"=>$_POST['deja_regle_acompte'],
+          "date_acompte"=>$_POST['date_acompte'],
+          "lieu_retour"=>$_POST['lieu_retour'],
+          "remise"=>$_POST['remise'],
+          "n_serie"=>$_POST['n_serie']
+        ];
+
+
+
+        $locationController = new LocationController();
+          $insertCar = $locationController->insert_location($data);
+
+
+        }
+    }
 
     ?>
     <!-- ============================================================== -->
@@ -209,12 +313,12 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                           <!-- row  4-->
                           <div class="row">
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="input-select">Lieu delivrance</label>
                                 <input name="lieu_delivrance" type="text" class="form-control currency-inputmask" id="currency-mask"  >
 
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="input-select">Date delivrance</label>
                                 <input name="date_delivrance" type="date" class="form-control "   >
 
@@ -246,7 +350,11 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                             <div class="form-group col-md-4">
                                 <label>Assurance
                                 </label>
-                                <input name="assurance"  type="number"  class="form-control currency-inputmask" id="currency-mask" >
+                                <select name ="assurance" class="form-control" id="input-select">
+                                  <option value="Tous risque">Tous risque</option>
+                                  <option value="sans assarnce">sans assarnce</option>
+                                  <option value="tiers">tiers</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Caution
@@ -259,7 +367,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
 
                                                                               <!-- row  6-->
-                                                                      <div class="row mt-3">
+                                                            <div class="row mt-3">
 
                                                                                 <div class="form-group col-md-3">
                                                                                     <label for="inputText3" >Mode paiement</label>
@@ -268,7 +376,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                                                                                       <option value="virements bancaires">virements bancaires</option>
                                                                                       <option value="carte bancaire">carte bancaire</option>
                                                                                     </select>
-                                                                               </div>
+                                                              </div>
 
 
                                                                               <div class="form-group col-md-3">

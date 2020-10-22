@@ -1,12 +1,12 @@
 <?php
 
   include '../../Controllers/CarsController.php';
-
   require_once '../../lib/PaginationVehiculeManagement.php';
 
 
   //Cars Controller instance
   $carController = new CarsController();
+
 
  //Pagination modal
  $Pagination = new PaginationVehiculeManagaement();
@@ -349,7 +349,7 @@
                                                     <td><?php echo $car['date_retour']; ?></td>
                                                     <td><?php echo $car['heure_retour']; ?></td>
                                                     <td>
-                                                      <a href="../Locations/Location_insert.php?marque_vehicule=<?php echo $car['marque'];?>&n_serie=<?php echo $car['n_serie'];?>&reservation_id=<?php echo $car['res_id'];?>" title="location">
+                                                      <a href="../Locations/Location_insertOldClient.php?id=<?php echo $car['res_cin'];?>&marque_vehicule=<?php echo $car['marque'];?>&n_serie=<?php echo $car['n_serie'];?>&reservation_id=<?php echo $car['res_id'];?>" title="location">
                                                             <i class="fas fa-chevron-circle-down ml-2"></i>
                                                       </a>
                                                       <a href="../Reservation/reservation_info.php?reservation_id=<?php echo $car['res_id'];?>" title="reservation">  <i class=" fas fa-chevron-down ml-2"></i> </a>

@@ -62,8 +62,9 @@ if(isset($_GET['location_id'])){
         "date_acompte"=>$_POST['date_acompte'],
         "lieu_retour"=>$_POST['lieu_retour'],
         "n_serie" =>$_POST['n_serie'],
-        "prix_ttc"=>$_POST['prix_ttc']
-      ];
+        "prix_ttc" =>  $_POST['prix_ttc']
+
+          ];
 
 
 
@@ -179,25 +180,17 @@ if(isset($_GET['location_id'])){
                           <!-- row  4-->
                           <div class="row">
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label for="input-select">Lieu delivrance</label>
                                 <input name="lieu_delivrance" type="text" value="<?php echo $location_data['lieu_delivrance']; ?>" class="form-control currency-inputmask" id="currency-mask"  >
 
                             </div>
 
 
-                            <div class="form-group col-md-6">
-                                <label>Type client
-                                </label>
-                                <select name = "type_client" class="form-control" id="input-select">
-                                    <option value="<?php echo $location_data['type_client']; ?>">
-                                                <?php echo $location_data['type_client']; ?>
-                                    </option>
-                                </select>
-                                    </div>
+                              <input value="<?php echo $location_data['type_client'];?>" name="type_client" hidden >
 
+                            </div>
 
-                          </div>
 
                           <!-- row  5-->
                           <div class="row mt-3">
@@ -207,7 +200,7 @@ if(isset($_GET['location_id'])){
 
                                </div>
 
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-3">
                                 <label  >Etat vehicule</label>
                                 <select name = "etat_vehicule" class="form-control" id="input-select">
                                   <option value="<?php echo $location_data['etat_vehicule']; ?>">
@@ -216,13 +209,24 @@ if(isset($_GET['location_id'])){
                                 </select>
                                </div>
 
-                            <div class="form-group">
-                                <input hidden name="assurance" value="<?php echo $location_data['assurance']; ?>" type="number" class="form-control currency-inputmask" id="currency-mask" >
+                            <div class="form-group col-md-3">
+                              <label>Assurance </label>
+                                <select name ="assurance" class="form-control" id="input-select">
+                                  <option value="<?php echo $location_data['assurance']; ?>"><?php echo $location_data['assurance']; ?></option>
+                                  <option value="Tous risque">Tous risque</option>
+                                  <option value="sans assarnce">sans assarnce</option>
+                                  <option value="tiers">tiers</option>
+                                </select>
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-3">
                                 <label>Caution
                                 </label>
                                 <input name="caution" value="<?php echo $location_data['caution']; ?>" type="number" class="form-control currency-inputmask" id="currency-mask"  >
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Date delivrance
+                                </label>
+                                <input name="date_delivrance" value="<?php echo $location_data['date_delivrance']; ?>" type="date" class="form-control currency-inputmask" id="currency-mask"  >
                             </div>
 
 

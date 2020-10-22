@@ -59,7 +59,6 @@
       <div class="row mb-2 mt-2">
         <div class="card" id="facture">
             <div class="card-header p-4">
-                 <a class="pt-2 d-inline-block" href="index.html">Concept</a>
 
                 <div class="float-right"> <h3 class="mb-0">Facture</h3>
                   <?php if(!empty($date_fact)){?>
@@ -158,8 +157,12 @@
                                     </td>
                                     <td class="right">
                                         <strong class="text-dark"><?php
+                                            if(empty($data['total'])){
+                                              echo 'empty';
+                                            }else{
+                                              echo $data['total'];
 
-                                            echo $data['total'];
+                                            }
 
 
                                          ?></strong>

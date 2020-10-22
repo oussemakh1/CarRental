@@ -40,8 +40,7 @@ public function __construct(){
   $this->db = new Database();
   //Failed reservation (devis)
   $this->reservationFailed();
-  //Delete reservation (date validite passed)
-  $this->reservationDelOnPassedDateVal();
+
 
 
 
@@ -52,7 +51,7 @@ public function __construct(){
 public function reservationFailed()
 {
   //Query
-  $query =" UPDATE devis SET reservation_status = 'Failed',isDone='not done' WHERE date_validite < CURRENT_DATE AND isDone = 'not done'";
+  $query =" UPDATE devis SET reservation_status = 'Failed' WHERE date_validite < CURRENT_DATE AND isDone = 'not done'";
 
   //Execute
   $FailedDevis = $this->db->query($query);

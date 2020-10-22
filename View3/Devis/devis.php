@@ -141,12 +141,13 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="devis_edit.php?reservation_id=<?php echo $data['reservation_id'];?>" class="btn btn-outline-success mt-3">Modifier</a>
+
 
             </div>
             <div class="card-footer bg-white">
                 <p class="mb-0">2983 Glenview Drive Corpus Christi, TX 78476</p>
             </div>
+              <a href="devis_edit.php?reservation_id=<?php echo $data['reservation_id'];?>" class="btn btn-outline-success mt-3">Modifier</a>
         </div>
     </div>
 </div>

@@ -73,7 +73,7 @@
         <!-- ============================================================== -->
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-              
+
                 <div class="card">
                     <div class="card-body">
                         <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
@@ -158,7 +158,11 @@
                                                       <div class="form-group col-md-3">
                                                           <label for="input-select">Type vehicule</label>
                                                           <select name="type_vehicule" class="form-control" id="input-select">
-                                                              <option value="<?php echo $car_data['type_vehicule']; ?>"><?php echo $car_data['fournisseur']; ?></option>
+                                                            <option value="<?php echo $car_data['type_vehicule'];?>"><?php echo $car['type_vehicule'];?></option>
+                                                              <option value="Véhicule classique">Véhicule classique </option>
+                                                              <option value="Utilitaire type kangoo">Utilitaire type kangoo</option>
+                                                              <option value="Utilitaire type traffic">Utilitaire type traffic</option>
+
                                                           </select>
                                                       </div>
 

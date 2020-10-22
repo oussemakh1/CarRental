@@ -74,7 +74,7 @@ class PaginationVehiculeManagaement
         $start = ($this->current_page_carreserved() * $this->limit) - $this->limit;
       }
 
-      $query = "SELECT cars.n_serie,cars.marque,cars.model,reservation.date_depart,reservation.date_retour,reservation.heure_retour,reservation.nb_jour,
+      $query = "SELECT cars.n_serie,cars.marque,cars.model,reservation.cin as res_cin,reservation.date_depart,reservation.date_retour,reservation.heure_retour,reservation.nb_jour,
 			reservation.id AS res_id ,cars.id AS car_id,reservation.date_depart,reservation.date_retour FROM cars INNER JOIN reservation ON
        cars.n_serie = (SELECT reservation.n_serie FROM reservation WHERE reservation.date_retour > CURRENT_DATE()
 			AND reservation.isDone = 'not done') ORDER BY reservation.id LIMIT $start,$this->limit";
@@ -93,9 +93,7 @@ class PaginationVehiculeManagaement
          $start = ($this->current_page_carrented() * $this->limit) - $this->limit;
        }
 
-       $query = "SELECT cars.id as carId,cars.n_serie,location.id as locationId,location.marque_vehicule,location.type_client,location.date_depart,location.date_retour,location.heure_retour,location.nb_jour
-                 FROM cars INNER JOIN location ON cars.n_serie = (SELECT location.n_serie FROM location WHERE location.date_retour > CURRENT_DATE())
-                       ORDER BY location.id DESC  LIMIT $start,$this->limit";
+       $query = "SELECT cars.id as carId,cars.n_serie,location.id as locationId,cars.*,location.* FROM cars INNER JOIN location ON cars.n_serie = location.n_serie WHERE location.date_retour > CURRENT_DATE()";
        $execute = $this->db->query($query);
        if($execute){
          return $execute->fetchAll();

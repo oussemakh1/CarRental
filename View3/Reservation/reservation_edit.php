@@ -201,8 +201,13 @@ if(isset($_GET['reservation_id'])){
 
 
                             <div class="form-group ">
-                                <input  hidden name="assurance" value="<?php echo $reservation_data['assurance']; ?>" type="number" class="form-control currency-inputmask" id="currency-mask" >
-                            </div>
+                              <label>Assurance </label>
+                                <select name ="assurance" class="form-control" id="input-select">
+                                  <option value="<?php echo $location_data['assurance']; ?>"><?php echo $location_data['assurance']; ?></option>
+                                  <option value="Tous risque">Tous risque</option>
+                                  <option value="sans assarnce">sans assarnce</option>
+                                  <option value="tiers">tiers</option>
+                                </select>                            </div>
 
 
 

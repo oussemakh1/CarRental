@@ -108,8 +108,12 @@
 
                                                       <div class="form-group col-md-3">
                                                           <label for="input-select">Type vehicule</label>
-                                                          <select class="form-control" id="input-select">
-                                                              <option>Choose Example</option>
+                                                          <select name="type_vehicule" class="form-control" id="input-select">
+                                                            <option value="<?php echo $car['type_vehicule'];?>"><?php echo $car['type_vehicule'];?></option>
+                                                              <option value="Véhicule classique">Véhicule classique </option>
+                                                              <option value="Utilitaire type kangoo">Utilitaire type kangoo</option>
+                                                              <option value="Utilitaire type traffic">Utilitaire type traffic</option>
+
                                                           </select>
                                                       </div>
 

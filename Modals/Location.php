@@ -88,7 +88,9 @@ public function Location_data_collect($data){
   $this->lieu_retour = $data['lieu_retour'];
   $this->remise = $data['remise'];
   $this->n_serie = $data['n_serie'];
-  $this->prix_ttc =  getTotal($this->remise,$this->prix_ht,$this->tva);
+  $this->prix_ttc = getTotal($_POST['remise'],$_POST['prix_ht'],$_POST['tva']);
+
+
 
 
 }
@@ -472,8 +474,8 @@ public function update_location($id,$data){
         $this->prenom,
       $this->telephone,
         $this->code_postal,
-    $this->adress,
-      $this->nb_jour,
+        $this->adress,
+        $this->nb_jour,
       $this->prix_ht,
         $this->tva,
         $this->remise,

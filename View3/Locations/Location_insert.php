@@ -4,9 +4,14 @@
  include '../../Controllers/LocationController.php';
  include '../../Controllers/FactureController.php';
  include '../../Controllers/ReservationController.php';
+ include '../../lib/Pagination.php';
+ include '../../lib/Search.php';
  include '../../lib/DateFunc.php';
-//Inherit client controller
- $clientController = new ClientController();
+
+
+//Inherit Search
+$Search = new Search();
+
 
 //Inherit reservation controller
 $reservationController = new ReservationController();
@@ -17,13 +22,30 @@ $reservationController = new ReservationController();
  //Inherit Facture Controller
  $factureController = new FactureController();
 
+ if(isset($_GET['reservation_id'],$_GET['n_serie'],$_GET['marque_vehicule'])){
+   $n_serie = $_GET['n_serie'];
+   $marque_vehicule = $_GET['marque_vehicule'];
+   $reservation_id = $_GET['reservation_id'];
+   $reservation = $reservationController->getReservationById($reservation_id);
+   $clientCin = $reservation['cin'];
+   header("Location:Location_insertOldClient.php?id=$clientCin&marque_vehicule=$marque_vehicule&n_serie=$n_serie");
+ }
+
+
+
+
+
+elseif(isset($_GET['n_serie'],$_GET['marque_vehicule']))
+{
 //Fetch car data
 $marque_vehicule = $_GET['marque_vehicule'];
 $n_serie = $_GET['n_serie'];
 
-$reservation_id = $_GET['reservation_id'];
-//Paginatin
-require_once '../../lib/Pagination.php';
+if(isset($_GET['search'])){
+  $key = $_GET['search'];
+  $clientsSearch = $Search->ClientSearch($key);
+}
+
 //Pagination modal
 $Pagination = new Pagination('clients');
 $clients = $Pagination->get_data();
@@ -67,7 +89,9 @@ if(isset($_POST['insert_location']))
     "date_acompte"=>$_POST['date_acompte'],
     "lieu_retour"=>$_POST['lieu_retour'],
     "remise"=>$_POST['remise'],
-    "n_serie" => $_POST['n_serie']
+    "n_serie" => $_POST['n_serie'],
+    "prix_ttc" =>$_POST['prix_ttc']
+
   ];
 
 
@@ -76,10 +100,14 @@ if(isset($_POST['insert_location']))
 
 
     $insertCar = $locationController->insert_location($data);
-    $changeReservationStatus = $reservationController->ReservationSuccess($reservation_id);
+  //  $changeReservationStatus = $reservationController->ReservationSuccess($reservation_id);
 
 }
+}
 
+else{
+//header("Location:../Vehicules/Vehicules.php");
+}
 ?>
     <!-- ============================================================== -->
     <!-- main wrapper -->
@@ -106,12 +134,12 @@ if(isset($_POST['insert_location']))
 
           <div class="tab-vertical">
               <ul class="nav nav-tabs" id="myTab3" role="tablist">
-                  <li class="nav-item">
-                      <a class="nav-link active" id="home-vertical-tab" data-toggle="tab" href="#home-vertical" role="tab" aria-controls="home" aria-selected="true">Client passager</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" id="profile-vertical-tab" data-toggle="tab" href="#profile-vertical" role="tab" aria-controls="profile" aria-selected="false">List clients</a>
-                  </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-vertical-tab" data-toggle="tab" href="#home-vertical" role="tab" aria-controls="home" aria-selected="true">Client passager</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-vertical-tab" data-toggle="tab" href="#profile-vertical" role="tab" aria-controls="profile" aria-selected="false">List clients</a>
+                </li>
 
               </ul>
               <div class="tab-content" id="myTabContent3">
@@ -238,8 +266,13 @@ if(isset($_POST['insert_location']))
                                                                   <div class="form-group col-md-4">
                                                                       <label>Assurance
                                                                       </label>
-                                                                      <input name="assurance" type="number" class="form-control currency-inputmask" id="currency-mask" >
-                                                                  </div>
+                                                                      <select name ="assurance" class="form-control" id="input-select">
+                                                                        <option value="Tous risque">Tous risque</option>
+                                                                        <option value="sans assarnce">sans assarnce</option>
+                                                                        <option value="tiers">tiers</option>
+                                                                      </select>
+                                                                    </div>
+
                                                                   <div class="form-group col-md-4">
                                                                       <label>Caution
                                                                       </label>
@@ -306,10 +339,7 @@ if(isset($_POST['insert_location']))
 
                                                                                                                      </div>
 
-                                                                                                                      <div class="form-group col-md-3">
-                                                                                                                          <input hidden name="prix_ttc" type="number" class="form-control currency-inputmask" id="currency-mask" >
 
-                                                                                                                     </div>
                                                                                                                     </div>
 
 
@@ -382,23 +412,7 @@ if(isset($_POST['insert_location']))
                                       <table id="example" class="table table-striped table-bordered second" style="width:100%">
 
                                         <div class="row mb-2">
-                                            <div class="col-sm-12 col-md-6">
-                                              <div class="dt-buttons">
-                                                <button class="btn btn-outline-light buttons-copy buttons-html5" tabindex="0" aria-controls="example" type="button">
-                                                  <span>Copy</span>
-                                                </button>
-                                                <button class="btn btn-outline-light buttons-excel buttons-html5" tabindex="0" aria-controls="example" type="button">
-                                                  <span>Excel</span>
-                                                </button>
-                                                <button class="btn btn-outline-light buttons-pdf buttons-html5" tabindex="0" aria-controls="example" type="button">
-                                                  <span>PDF</span>
-                                                </button>
-                                                <button class="btn btn-outline-light buttons-print" tabindex="0" aria-controls="example" type="button">
-                                                  <span>Print</span>
-                                                </button>
-
-                                              </div>
-                                            </div>
+                                          
 
                                             <div class="col-sm-12 col-md-6">
                                               <div id="example_filter" class="dataTables_filter">

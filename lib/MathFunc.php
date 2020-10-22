@@ -32,15 +32,8 @@
       $discount = getDiscount($remise,$prix_ht);
       $tva2 = getTva($remise,$prix_ht,$tva);
 
-      if($discount > 0  AND $tva2 > 0){
         return  ($prix_ht - $discount) + $tva2;
-      }elseif($discount < 0 AND $tva2 > 0){
-        return  $prix_ht + $tva2 ;
-      }elseif($discount > 0 AND $tva2 < 0){
-        return $prix_ht - $discount;
-      }elseif($discount == 0 AND $tva2 == 0){
-        return $prix_ht;
-      }
+
   }
 
 

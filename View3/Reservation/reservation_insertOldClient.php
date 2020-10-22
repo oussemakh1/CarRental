@@ -37,6 +37,7 @@ if(isset($_GET['cin'],$_GET['marque_vehicule'],$_GET['n_serie'])){
       $pays =$find_Client['pays'];
       $n_permis = $find_Client['n_permis'];
       $code_postal = $find_Client['code_postal'];
+      $type_client = $find_Client['type_client'];
 
 
 
@@ -180,7 +181,7 @@ if(isset($_GET['cin'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                                 <input name="cin" value="<?php echo $cin; ?>" type="text"  class="form-control "  hidden>
                             </div>
 
-
+                            <input name="type_client" value="<?php echo $type_client; ?>" hidden>
 
 
                           </div>
@@ -191,12 +192,17 @@ if(isset($_GET['cin'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                           <!-- row  4-->
                           <div class="row">
 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <label for="input-select">Lieu delivrance</label>
                                 <input name="lieu_delivrance" type="text" class="form-control currency-inputmask" id="currency-mask"  >
 
                             </div>
 
+                            <div class="form-group col-md-6">
+                                <label for="input-select">Date delivrance</label>
+                                <input name="date_delivrance" type="date" class="form-control currency-inputmask" id="currency-mask"  >
+
+                            </div>
 
 
 
@@ -220,8 +226,11 @@ if(isset($_GET['cin'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                             <div class="form-group col-md-6">
                                 <label>Assurance
                                 </label>
-                                <input name="assurance" type="number" class="form-control currency-inputmask" id="currency-mask" >
-                            </div>
+                                <select name ="assurance" class="form-control" id="input-select">
+                                  <option value="Tous risque">Tous risque</option>
+                                  <option value="sans assarnce">sans assarnce</option>
+                                  <option value="tiers">tiers</option>
+                                </select>                            </div>
 
 
 

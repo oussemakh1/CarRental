@@ -226,8 +226,11 @@ if(isset($_POST['insert_reservation']))
                                                                   <div class="form-group col-md-3">
                                                                       <label>Assurance
                                                                       </label>
-                                                                      <input name="assurance" type="number" class="form-control currency-inputmask" id="currency-mask" >
-                                                                  </div>
+                                                                      <select name ="assurance" class="form-control" id="input-select">
+                                                                        <option value="Tous risque">Tous risque</option>
+                                                                        <option value="sans assarnce">sans assarnce</option>
+                                                                        <option value="tiers">tiers</option>
+                                                                      </select>                                                                  </div>
 
 
 
@@ -309,23 +312,7 @@ if(isset($_POST['insert_reservation']))
                                       <table id="example" class="table table-striped table-bordered second" style="width:100%">
 
                                         <div class="row mb-2">
-                                            <div class="col-sm-12 col-md-6">
-                                              <div class="dt-buttons">
-                                                <button class="btn btn-outline-light buttons-copy buttons-html5" tabindex="0" aria-controls="example" type="button">
-                                                  <span>Copy</span>
-                                                </button>
-                                                <button class="btn btn-outline-light buttons-excel buttons-html5" tabindex="0" aria-controls="example" type="button">
-                                                  <span>Excel</span>
-                                                </button>
-                                                <button class="btn btn-outline-light buttons-pdf buttons-html5" tabindex="0" aria-controls="example" type="button">
-                                                  <span>PDF</span>
-                                                </button>
-                                                <button class="btn btn-outline-light buttons-print" tabindex="0" aria-controls="example" type="button">
-                                                  <span>Print</span>
-                                                </button>
-
-                                              </div>
-                                            </div>
+                                      
 
                                             <div class="col-sm-12 col-md-6">
                                               <div id="example_filter" class="dataTables_filter">

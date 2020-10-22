@@ -18,7 +18,11 @@ class Pagination
   public function set_total_records()
   {
     $query = $this->db->query("SELECT id FROM $this->table");
-    $this->total_records = $query->rowCount();
+    if($query)
+    {
+      $this->total_records = $query->rowCount();
+
+    }
   }
 
 
@@ -34,9 +38,13 @@ class Pagination
        $start = ($this->current_page() * $this->limit) - $this->limit;
      }
 
-     $query = "SELECT * FROM  $this->table LIMIT $start,$this->limit";
+     $query = "SELECT * FROM  $this->table ORDER BY $this->table.id DESC LIMIT $start,$this->limit";
      $execute = $this->db->query($query);
-     return $execute->fetchAll();
+     if($execute)
+     {
+       return $execute->fetchAll();
+
+     }
    }
 
    public function get_pagination_numbers()
