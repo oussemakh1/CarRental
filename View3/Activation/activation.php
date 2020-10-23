@@ -6,8 +6,9 @@ include '../../lib/Database.php';
 //Check if already activated
 $db = new Database();
 $query = "SELECT * FROM activation";
-$fetch = $db->query($query)->fetch();
-if(!$fetch){
+$fetch = $db->query($query);
+$code_activation = $fetch->fetch();
+if(!$code_activation){
   if(isset($_POST['activation'])){
 
       //include activation
