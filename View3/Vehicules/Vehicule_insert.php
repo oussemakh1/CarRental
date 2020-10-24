@@ -100,9 +100,9 @@ if(isset($_POST['insert_car']))
                             <div class="form-group col-md-3">
                                 <label for="input-select">Carburant</label>
                                 <select  name="carburant" class="form-control" >
-                                    <option>Essance</option>
-                                    <option>Diesel</option>
-                                    <option>Hybride</option>
+                                          <option value="Essence">Essence</option>
+                                                                      <option value="Diesel">Diesel</option>
+                                                                      <option value="Hybride">Hybride</option>
 
 
                                 </select>
