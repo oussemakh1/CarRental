@@ -99,7 +99,10 @@
                                 <label for="input-select">Carburant</label>
                                 <select  name="carburant" class="form-control" >
                                   <option value="<?php echo $car_data['carburant']; ?>"><?php echo $car_data['carburant']; ?></option>
-                                    <option>Choose Example</option>
+                                    <option value="Essence">Essence</option>
+                                                                      <option value="Diesel">Diesel</option>
+                                                                      <option value="Hybride">Hybride</option>
+
                                 </select>
                             </div>
 
