@@ -101,7 +101,9 @@ if(isset($_POST['insert_car']))
                                 <label for="input-select">Carburant</label>
                                 <select  name="carburant" class="form-control" >
                                     <option>Essance</option>
-                                    <option>Mazout</option>
+                                    <option>Diesel</option>
+                                    <option>Hybride</option>
+
 
                                 </select>
                             </div>
