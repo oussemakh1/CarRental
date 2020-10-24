@@ -77,7 +77,7 @@ if(!$code_activation){
                     </div>
 
 
-                    <button type="submit" name="activation" class="btn btn-success btn-lg btn-block">Activé</button>
+                    <input type="submit" name="activation" class="btn btn-success btn-lg btn-block" value="Activé">
                 </form>
             </div>
 
