@@ -7,7 +7,7 @@
   if(isset($_GET['data']))
   {
     $factureController = new FactureController();
-     $taken_data = $_GET['data];
+     $taken_data = $_GET['data'];
      $data = unserialize($taken_data);
      $factureController->insert_facture($data);
           $company_data = $factureController->CompanyInfo();
@@ -34,7 +34,7 @@
 <!-- ============================================================== -->
 <!-- main wrapper -->
 <!-- ============================================================== -->
-<?php include '.../includes/header.inc.php'; ?>
+<?php include '../includes/header.inc.php'; ?>
 
     <!-- ============================================================== -->
     <!-- navbar -->
