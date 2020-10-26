@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
+if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservation_id'])){
 
   $id = $_GET['id'];
   //Client Controller
@@ -108,7 +108,109 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
 
 
     }    
-  }
+  }elseif(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
+
+    $id = $_GET['id'];
+    //Client Controller
+    include '../../Controllers/ClientController.php';
+    //Location Controller
+    include '../../Controllers/LocationController.php';
+    //Reservation controller
+    include '../../Controllers/ReservationController.php';
+
+    include '../../lib/DateFunc.php';
+
+
+
+      //Inherit client controller
+      $clientController = new ClientController();
+
+
+
+     //Inherit location controller
+     $locationController = new LocationController();
+
+
+    //Get car data
+    $marque_vehicule = $_GET['marque_vehicule'];
+    $n_serie = $_GET['n_serie'];
+
+    $find_Client = $clientController->getClientByCin($id);
+
+
+        $nom = $find_Client['nom'];
+        $prenom = $find_Client['prenom'];
+        $email = $find_Client['email'];
+        $date_naissance = $find_Client['date_naissance'];
+        $telephone = $find_Client['telephone'];
+        $cin = $find_Client['cin'];
+        $adress = $find_Client['adress'];
+        $ville = $find_Client['ville'];
+        $pays =$find_Client['pays'];
+        $n_permis = $find_Client['n_permis'];
+        $code_postal = $find_Client['code_postal'];
+        $type_client = $find_client['type_client'];
+
+
+
+
+
+
+
+
+
+
+
+
+      //Insert Location
+      if(isset($_POST['insert_location']))
+      {
+
+        $data = [
+
+          "nom"=>$_POST['nom'],
+          "prenom"=>$_POST['prenom'],
+          "date_naissance"=>$_POST['date_naissance'],
+          "adress"=>$_POST['adress'],
+          "code_postal" =>$_POST['code_postal'],
+          "ville"=>$_POST['ville'],
+          "pays"=>$_POST['pays'],
+          "telephone"=>$_POST['telephone'],
+          "email"=>$_POST['email'],
+          "n_permis"=>$_POST['n_permis'],
+          "date_delivrance"=>$_POST['date_delivrance'],
+          "lieu_delivrance"=>$_POST['lieu_delivrance'],
+          "cin"=>$_POST['cin'],
+          "type_client"=>$_POST['type_client'],
+          "marque_vehicule"=>$_POST['marque_vehicule'],
+          "etat_vehicule"=>$_POST['etat_vehicule'],
+          "assurance"=>$_POST['assurance'],
+          "caution"=>$_POST['caution'],
+          "mode_paiement"=>$_POST['mode_paiement'],
+          "nb_jour"=>dateDiff($_POST['date_retour'],$_POST['date_depart']),
+          "date_depart"=>$_POST['date_depart'],
+          "heure_depart"=>$_POST['heure_depart'],
+          "date_retour"=>$_POST['date_retour'],
+          "heure_retour"=>$_POST['heure_retour'],
+          "prix_ht"=>$_POST['prix_ht'],
+          "tva"=>$_POST['tva'],
+          "prix_ttc"=>$_POST['prix_ttc'],
+          "paye_le"=>$_POST['paye_le'],
+          "deja_regle_acompte"=>$_POST['deja_regle_acompte'],
+          "date_acompte"=>$_POST['date_acompte'],
+          "lieu_retour"=>$_POST['lieu_retour'],
+          "remise"=>$_POST['remise'],
+          "n_serie"=>$_POST['n_serie']
+        ];
+
+
+
+        $locationController = new LocationController();
+          $insertCar = $locationController->insert_location($data);
+
+
+        }
+    }
 
     ?>
     <!-- ============================================================== -->
@@ -224,7 +326,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
 
 
 
-                                <select hidden name="type_client"  value="<?php echo $type_client;?> "class="form-control" id="input-select">
+                                <input hidden name="type_client"  value="<?php echo $type_client;?> "class="form-control" id="input-select">
 
 
                           </div>
@@ -308,7 +410,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                                                                                       <input name="prix_ht" type="number"  required class="form-control currency-inputmask" id="currency-mask"  >
 
                                                                                  </div>
-
+                                                                                  <input type="number" name="prix_ttc" hidden>
                                                                                  <div class="form-group col-md-3">
                                                                                      <label for="inputText3" >TVA</label>
                                                                                      <input name="tva" type="number" required class="form-control currency-inputmask" id="currency-mask" >
