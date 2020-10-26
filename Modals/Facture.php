@@ -80,7 +80,7 @@ public function insert_facture($data){
     //Insert facture
     $new_facture = $this->db->insert($query,[
       $this->nom_client,$this->prenom_client,$this->telephone_client,
-                                     $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,,$this->remise,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
+                                     $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,$this->remise,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
                                      $this->location_id,$this->cin
      ]);
 
