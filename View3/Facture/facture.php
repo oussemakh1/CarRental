@@ -10,6 +10,8 @@
      $taken_data = $_GET['data];
      $data = unserialize($taken_data);
      $factureController->insert_facture($data);
+          $company_data = $factureController->CompanyInfo();
+
 
      
   } 
@@ -32,7 +34,7 @@
 <!-- ============================================================== -->
 <!-- main wrapper -->
 <!-- ============================================================== -->
-<?php include '../includes/header.inc.php'; ?>
+<?php include '.../includes/header.inc.php'; ?>
 
     <!-- ============================================================== -->
     <!-- navbar -->
@@ -64,7 +66,7 @@
             <div class="card-header p-4">
 
                 <div class="float-right"> <h3 class="mb-0">Facture</h3>
-                  <?php if(!empty($date_fact)){?>
+                  <?php if(!empty($data['date_fact'])){?>
                     Date: <?php echo $data['date_fact']; ?>
                   <?php }else { ?>
                     Date: <?php echo date('l jS \of F Y h:i:s A') ; ?>
