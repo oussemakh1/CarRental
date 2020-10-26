@@ -9,7 +9,6 @@
     $factureController = new FactureController();
      $taken_data = $_GET['data];
      $data = unserialize($taken_data);
-     $company_data = $factureController->CompanyInfo();
      $factureController->insert_facture($data);
 
      
