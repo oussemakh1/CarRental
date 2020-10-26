@@ -141,7 +141,6 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                 <div class="card">
-                  <?php echo $prenom; ?>
                     <div class="card-body">
                         <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" >
                           <!-- row 1 -->
