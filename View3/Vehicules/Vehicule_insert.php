@@ -125,11 +125,11 @@ if(isset($_POST['insert_car']))
                             <div class="form-group col-md-3">
                                 <label>Traites mensuel
                                 </label>
-                                <input  name="montant_traites_mensuel" type="number" class="form-control currency-inputmask" id="currency-mask" placeholder="Montant traites mensuel...">
+                                <input  name="montant_traites_mensuel" type="number" value="0" required class="form-control currency-inputmask" id="currency-mask" placeholder="Montant traites mensuel...">
                             </div>
                             <div class="form-group col-md-3">
                                 <label >N°traites</label>
-                                <input name="nombre_traites" type="number" placeholder="nombre des traites" class="form-control">
+                                <input name="nombre_traites" type="number" value="0" placeholder="nombre des traites" class="form-control" required>
                             </div>
 
                           </div>
