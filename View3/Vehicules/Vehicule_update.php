@@ -162,7 +162,7 @@
                                                           <label for="input-select">Type vehicule</label>
                                                           <select name="type_vehicule" class="form-control" id="input-select">
                                                             <option value="<?php echo $car_data['type_vehicule'];?>"><?php echo $car['type_vehicule'];?></option>
-                                                              <option value="Véhicule classique">Véhicule classique </option>
+                                                              <option value="Vehicule classique">Vehicule classique </option>
                                                               <option value="Utilitaire type kangoo">Utilitaire type kangoo</option>
                                                               <option value="Utilitaire type traffic">Utilitaire type traffic</option>
 
