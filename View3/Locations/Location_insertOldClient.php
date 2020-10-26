@@ -55,7 +55,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
 
     //Insert Location
-    if(isset($_POST['insert_location']))
+    elseif(isset($_POST['insert_location']))
     {
 
       $data = [
