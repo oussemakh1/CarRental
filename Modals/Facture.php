@@ -73,14 +73,14 @@ public function insert_facture($data){
     //Query
     $query = "INSERT INTO facture(nom_client,prenom_client,telephone_client,
                                   code_postal_client,nom_adress_fact,
-                                  nb_jour,prix,tva,total,date_fact,date_reglement,date_acompte,mode_reglement,mode_livraison,location_id,cin)
-                          VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                                  nb_jour,prix,tva,remise,total,date_fact,date_reglement,date_acompte,mode_reglement,mode_livraison,location_id,cin)
+                          VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                                   ";
 
     //Insert facture
     $new_facture = $this->db->insert($query,[
       $this->nom_client,$this->prenom_client,$this->telephone_client,
-                                     $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
+                                     $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,,$this->remise,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
                                      $this->location_id,$this->cin
      ]);
 
@@ -106,6 +106,7 @@ public function update_facture($id,$data){
                                nb_jour=?,
                                prix=?,
                                tva=?,
+                               remise=?,
                                total=?,
                                date_fact=?,
                                date_reglement=?,
@@ -123,7 +124,7 @@ public function update_facture($id,$data){
   //Update facture
   $facture_update = $this->db->update($query,[
     $this->nom_client,$this->prenom_client,$this->telephone_client,
-    $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
+    $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,$this->remise,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
     $this->locaiton_id,$this->cin,$id
   ]);
 
