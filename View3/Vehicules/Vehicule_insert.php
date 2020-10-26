@@ -41,6 +41,7 @@ if(isset($_POST['insert_car']))
   header("Location:Vehicules.php");
   }else{
     header("Location:Vehicule_insert.php");
+  }
 }
 
 
