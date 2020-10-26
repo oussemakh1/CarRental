@@ -315,12 +315,12 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
                             <div class="form-group col-md-6">
                                 <label for="input-select">Lieu delivrance</label>
-                                <input name="lieu_delivrance" type="text" class="form-control currency-inputmask" id="currency-mask"  >
+                                <input name="lieu_delivrance" type="text" required class="form-control currency-inputmask" id="currency-mask"  >
 
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="input-select">Date delivrance</label>
-                                <input name="date_delivrance" type="date" class="form-control "   >
+                                <input name="date_delivrance" type="date" required class="form-control "   >
 
                             </div>
 
@@ -351,15 +351,15 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                                 <label>Assurance
                                 </label>
                                 <select name ="assurance" class="form-control" id="input-select">
-                                  <option value="Tous risque">Tous risque</option>
-                                  <option value="sans assarnce">sans assarnce</option>
+                                  <option value="Tous_risque">Tous risque</option>
+                                  <option value="sans_assarnce">sans assarnce</option>
                                   <option value="tiers">tiers</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Caution
                                 </label>
-                                <input name="caution" type="number" class="form-control currency-inputmask" id="currency-mask"  >
+                                <input name="caution" type="number" required class="form-control currency-inputmask" id="currency-mask"  >
                             </div>
 
 
@@ -373,26 +373,26 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                                                                                     <label for="inputText3" >Mode paiement</label>
                                                                                     <select name = "mode_paiement" class="form-control" id="input-select">
                                                                                       <option value="cheque">chèque</option>
-                                                                                      <option value="virements bancaires">virements bancaires</option>
-                                                                                      <option value="carte bancaire">carte bancaire</option>
+                                                                                      <option value="virements_bancaires">virements bancaires</option>
+                                                                                      <option value="carte_bancaire">carte bancaire</option>
                                                                                     </select>
                                                               </div>
 
 
                                                                               <div class="form-group col-md-3">
                                                                                   <label for="inputText3" >Date depart</label>
-                                                                                  <input name="date_depart" type="date" class="form-control currency-inputmask" id="currency-mask" >
+                                                                                  <input name="date_depart" required type="date" class="form-control currency-inputmask" id="currency-mask" >
 
                                                                              </div>
                                                                              <div class="form-group col-md-3">
                                                                                  <label for="inputText3" >Heure depart</label>
-                                                                                 <input name="heure_depart" type="text" class="form-control currency-inputmask" id="currency-mask"  >
+                                                                                 <input name="heure_depart" required type="text" class="form-control currency-inputmask" id="currency-mask"  >
 
                                                                             </div>
 
                                                                                 <div class="form-group col-md-3">
                                                                                       <label for="inputText3" >Date retour</label>
-                                                                                      <input name="date_retour" type="date" class="form-control currency-inputmask" id="currency-mask"  >
+                                                                                      <input name="date_retour"  required type="date" class="form-control currency-inputmask" id="currency-mask"  >
 
                                                                                    </div>
                                                                           </div>
@@ -401,24 +401,24 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                                                                             <div class="row">
                                                                                    <div class="form-group col-md-3">
                                                                                        <label for="inputText3" >Heure retour</label>
-                                                                                       <input name="heure_retour" type="text" class="form-control currency-inputmask" id="currency-mask" >
+                                                                                       <input name="heure_retour" required type="text" class="form-control currency-inputmask" id="currency-mask" >
 
                                                                                   </div>
 
                                                                                   <div class="form-group col-md-3">
                                                                                       <label for="inputText3" >Prix ht</label>
-                                                                                      <input name="prix_ht" type="number" class="form-control currency-inputmask" id="currency-mask"  >
+                                                                                      <input name="prix_ht" type="number"  required class="form-control currency-inputmask" id="currency-mask"  >
 
                                                                                  </div>
 
                                                                                  <div class="form-group col-md-3">
                                                                                      <label for="inputText3" >TVA</label>
-                                                                                     <input name="tva" type="number" class="form-control currency-inputmask" id="currency-mask" >
+                                                                                     <input name="tva" type="number" required class="form-control currency-inputmask" id="currency-mask" >
 
                                                                                 </div>
                                                                                 <div class="form-group col-md-3">
                                                                                     <label for="inputText3" >Remise</label>
-                                                                                    <input name="remise" type="number" class="form-control currency-inputmask" id="currency-mask" >
+                                                                                    <input name="remise" type="number" required class="form-control currency-inputmask" id="currency-mask" >
 
                                                                                </div>
 
@@ -437,7 +437,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
                                                                               <div class="form-group col-md-3">
                                                                                   <label for="inputText3" >Paye le</label>
-                                                                                  <input name="paye_le" type="date" class="form-control currency-inputmask" id="currency-mask"  >
+                                                                                  <input name="paye_le" type="date" required class="form-control currency-inputmask" id="currency-mask"  >
 
                                                                              </div>
 
@@ -457,7 +457,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
                                                                            <div class="form-group col-md-3">
                                                                                <label for="inputText3" >Lieu retour</label>
-                                                                               <input name="lieu_retour" type="text" class="form-control currency-inputmask" id="currency-mask"  >
+                                                                               <input name="lieu_retour" required type="text" class="form-control currency-inputmask" id="currency-mask"  >
 
                                                                           </div>
 
