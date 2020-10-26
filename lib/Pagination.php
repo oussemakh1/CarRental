@@ -5,7 +5,7 @@ class Pagination
   private $db;
   private $table;
   private $total_records;
-  private $limit = 1;
+  private $limit = 10;
 
   public  function __construct($table)
   {
