@@ -14,7 +14,7 @@
      $company_data = $factureController->CompanyInfo();
      $factureController->insert_facture($data);
   }
-  if(isset($_GET['data_update']))
+  elseif(isset($_GET['data_update']))
   {
     $factureController = new FactureController();
     $company_data = $factureController->CompanyInfo();
