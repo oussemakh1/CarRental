@@ -76,7 +76,7 @@ if(isset($_POST['insert_car']))
 
                             <div class="form-group col-md-3">
                                 <label for="input-select">Fournisseur</label>
-                                <select name = "fournisseur" class="form-control" id="input-select">
+                                <select name="fournisseur" class="form-control" id="input-select">
                                   <?php foreach($fournisseur_list as $fournisseur): ?>
                                     <option value="<?php if(!empty($fournisseur)){
                                       echo $fournisseur['societe'];
@@ -93,11 +93,11 @@ if(isset($_POST['insert_car']))
                             </div>
                             <div class="form-group col-md-3">
                                 <label >Marque</label>
-                                <input name="marque" type="text" placeholder="marque vehicule ..." class="form-control">
+                                <input name="marque" type="text"  required placeholder="marque vehicule ..." class="form-control">
                             </div>
                             <div class="form-group col-md-3">
                                 <label  >Model</label>
-                                <input name="model" type="text" class="form-control" placeholder="model vehicule ...">
+                                <input name="model" type="text" class="form-control" required placeholder="model vehicule ...">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="input-select">Carburant</label>
@@ -161,17 +161,16 @@ if(isset($_POST['insert_car']))
 
                                                       <div class="form-group col-md-3">
                                                           <label for="input-select">Type vehicule</label>
-                                                             <select name="type_vehicule" class="form-control" id="input-select">
+                                                             <select name="type_vehicule" class="form-control" >
                                                               <option value="Vehicule_classique">Vehicule classique </option>
                                                               <option value="Utilitaire_type_kangoo">Utilitaire type kangoo</option>
                                                               <option value="Utilitaire_type_traffic">Utilitaire type traffic</option>
-
-                                                          </select>
+                                                             </select>
                                                       </div>
 
                                                       <div class="form-group col-md-3">
                                                           <label for="hue-demo">Color</label>
-                                                          <input name="color" type="text" id="hue-demo" class="form-control demo" data-control="hue" value="#ff6161">
+                                                          <input name="color" type="text" id="hue-demo" class="form-control demo" data-control="hue" required>
                                                       </div>
 
                                                       <div class="form-group col-md-4">
@@ -199,12 +198,12 @@ if(isset($_POST['insert_car']))
                                                       <div class="form-group col-md-3">
                                                           <label>N°serie
                                                           </label>
-                                                          <input name="n_serie" type="text" class="form-control currency-inputmask" id="currency-mask" placeholder="N° serie ..." >
+                                                          <input name="n_serie" type="text" class="form-control" required placeholder="N° serie ..." >
                                                       </div>
                                                       <div class="form-group col-md-3">
                                                           <label>N°facture
                                                           </label>
-                                                          <input name="num_facture_fournisseur" type="number" class="form-control currency-inputmask" id="currency-mask" placeholder="N°facture fournisseur..." >
+                                                          <input name="num_facture_fournisseur" type="number" class="form-control" placeholder="N°facture fournisseur..." >
                                                       </div>
 
 
