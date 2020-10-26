@@ -252,16 +252,16 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                             <input name="date_fact" value="<?php echo date('l jS \of F Y h:i:s A');?>" type="text" hidden >
 
                             <div >
-                                <input name="nom" value="<?php echo $nom; ?>" class="form-control" type="text" hidden >
+                                <input name="nom" value="<?php echo $nom; ?>" class="form-control" type="text"  >
                             </div>
                             <div >
-                                <input name="prenom" type="text" value="<?php echo $prenom; ?>" class="form-control" hidden>
+                                <input name="prenom" type="text" value="<?php echo $prenom; ?>" class="form-control" >
                             </div>
                             <div >
-                                <input name="date_naissance" value="<?php echo $date_naissance; ?>" type="date" class="form-control" hidden>
+                                <input name="date_naissance" value="<?php echo $date_naissance; ?>" type="date" class="form-control" >
                             </div>
                             <div >
-                                <input name="adress" value="<?php echo $adress; ?>" type="text" class="form-control" hidden>
+                                <input name="adress" value="<?php echo $adress; ?>" type="text" class="form-control" >
 
                             </div>
 
@@ -462,7 +462,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                                                                           </div>
 
 
-                                                                              <input name="n_serie" type="text" value="<?php echo $n_serie; ?>"  hidden>
+                                                                              <input name="n_serie" type="text" value="<?php echo $n_serie; ?>"  >
 
 
 
