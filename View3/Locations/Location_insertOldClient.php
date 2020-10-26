@@ -326,7 +326,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
 
 
-                                <select hidden name = "type_client"  value="<?php echo $type_client;?> "class="form-control" id="input-select">
+                                <select hidden name="type_client"  value="<?php echo $type_client;?> "class="form-control" id="input-select">
 
 
                           </div>
@@ -350,7 +350,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
                             <div class="form-group col-md-4">
                                 <label>Assurance
                                 </label>
-                                <select name ="assurance" class="form-control" id="input-select">
+                                <select name="assurance" class="form-control" id="input-select">
                                   <option value="Tous_risque">Tous risque</option>
                                   <option value="sans_assarnce">sans assarnce</option>
                                   <option value="tiers">tiers</option>
@@ -371,7 +371,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
                                                                                 <div class="form-group col-md-3">
                                                                                     <label for="inputText3" >Mode paiement</label>
-                                                                                    <select name = "mode_paiement" class="form-control" id="input-select">
+                                                                                    <select name="mode_paiement" class="form-control" id="input-select">
                                                                                       <option value="cheque">chèque</option>
                                                                                       <option value="virements_bancaires">virements bancaires</option>
                                                                                       <option value="carte_bancaire">carte bancaire</option>
@@ -451,7 +451,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="inputText3" >Date acompte</label>
-                                                                                <input name="date_acompte" type="date" class="form-control currency-inputmask" id="currency-mask" >
+                                                                                <input name="date_acompte" value="00-00-00" type="date" class="form-control currency-inputmask" id="currency-mask" >
 
                                                                            </div>
 
