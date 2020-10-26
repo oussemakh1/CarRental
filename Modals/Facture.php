@@ -85,10 +85,7 @@ public function insert_facture($data){
      ]);
 
    //Error Handeling
-   if($new_facture->rowCount() > 0){
-   }else{
-     return insert_error_message();
-   }
+  
 
 }
 
