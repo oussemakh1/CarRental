@@ -140,12 +140,12 @@ if(isset($_POST['insert_car']))
 
                             <div class="form-group col-md-6">
                                 <label  >Prix d'achat HT</label>
-                                <input name="prix_achat_ht" type="number" class="form-control" placeholder="prix d'achat hors tva...">
+                                <input name="prix_achat_ht" type="number" required class="form-control" placeholder="prix d'achat hors tva...">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label >TVA</label>
-                                <input name="tva" type="number" class="form-control" placeholder="%">
+                                <input name="tva" type="number" required class="form-control" placeholder="%">
                             </div>
 
 
@@ -176,7 +176,7 @@ if(isset($_POST['insert_car']))
                                                       <div class="form-group col-md-4">
                                                           <label>N°km
                                                           </label>
-                                                          <input name="nb_km_avant_revision" type="number" class="form-control currency-inputmask" id="currency-mask" placeholder="N°km avant revision..." >
+                                                          <input name="nb_km_avant_revision" value="0" required type="number" class="form-control currency-inputmask" id="currency-mask" placeholder="N°km avant revision..." >
                                                       </div>
 
 
