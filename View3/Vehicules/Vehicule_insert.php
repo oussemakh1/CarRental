@@ -104,8 +104,8 @@ if(isset($_POST['insert_car']))
                                 <label for="input-select">Carburant</label>
                                 <select  name="carburant" class="form-control" >
                                           <option value="Essence">Essence</option>
-                                                                      <option value="Diesel">Diesel</option>
-                                                                      <option value="Hybride">Hybride</option>
+                                          <option value="Diesel">Diesel</option>
+                                          <option value="Hybride">Hybride</option>
 
 
                                 </select>
@@ -162,7 +162,12 @@ if(isset($_POST['insert_car']))
 
                                                       <div class="form-group col-md-3">
                                                           <label for="input-select">Type vehicule</label>
-                                                          <input name="type_vehicule" value="test1" class="form-control">
+                                                             <select name="type_vehicule" class="form-control" id="input-select">
+                                                              <option value="Vehicule_classique">Vehicule classique </option>
+                                                              <option value="Utilitaire_type_kangoo">Utilitaire type kangoo</option>
+                                                              <option value="Utilitaire_type_traffic">Utilitaire type traffic</option>
+
+                                                          </select>
                                                       </div>
 
                                                       <div class="form-group col-md-3">
