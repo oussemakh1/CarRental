@@ -4,6 +4,16 @@
   include '../../Controllers/FactureController.php';
 
 
+  if(isset($_GET['data']))
+  {
+    $factureController = new FactureController();
+     $taken_data = $_GET['data];
+     $data = unserialize($taken_data);
+     $company_data = $factureController->CompanyInfo();
+     $factureController->insert_facture($data);
+  }
+
+
 
 
 
