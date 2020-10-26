@@ -163,7 +163,7 @@ if(isset($_POST['insert_car']))
                                                       <div class="form-group col-md-3">
                                                           <label for="input-select">Type vehicule</label>
                                                           <select name="type_vehicule" class="form-control" id="input-select">
-                                                              <option value="Véhicule classique">Véhicule classique </option>
+                                                              <option value="Vehicule classique">Vehicule classique </option>
                                                               <option value="Utilitaire type kangoo">Utilitaire type kangoo</option>
                                                               <option value="Utilitaire type traffic">Utilitaire type traffic</option>
 
