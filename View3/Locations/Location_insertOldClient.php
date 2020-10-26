@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservation_id'])){
+if(!isset($_GET['reservation_id'])){
 
   $id = $_GET['id'];
   //Client Controller
@@ -107,7 +107,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'],$_GET['reservatio
         $insertCar = $locationController->insert_location($data);
 
 
-      
+    }    
   }elseif(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
 
     $id = $_GET['id'];
