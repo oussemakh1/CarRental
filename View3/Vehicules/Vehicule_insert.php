@@ -158,17 +158,12 @@ if(isset($_POST['insert_car']))
 
 
                                                     <!-- row  4-->
-                                                   <!-- <div class="row mt-3">
+                                                   <div class="row mt-3">
 
                                                       <div class="form-group col-md-3">
                                                           <label for="input-select">Type vehicule</label>
-                                                          <select name="type_vehicule" class="form-control" id="input-select">
-                                                              <option value="Vehicule_classique">Vehicule classique </option>
-                                                              <option value="Utilitaire_type kangoo">Utilitaire type kangoo</option>
-                                                              <option value="Utilitaire_type traffic">Utilitaire type traffic</option>
-
-                                                          </select>
-                                                      </div> -->
+                                                          <input name="type_vehicule" value="test1" class="form-control">
+                                                      </div>
 
                                                       <div class="form-group col-md-3">
                                                           <label for="hue-demo">Color</label>
