@@ -37,7 +37,9 @@ if(isset($_POST['insert_car']))
 
   $carController = new CarsController();
   $insert_car = $carController->insertCar($data);
+  if($insert_car){
   header("Location:Vehicules.php");
+  }
   
 }
 
