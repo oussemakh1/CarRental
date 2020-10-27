@@ -366,6 +366,124 @@
 
 
                   </div>
+                  <!-- Fournisseur History -->
+                    <div class="tab-pane fade show  " id="carEncoursHistory-justify" role="tabpanel" aria-labelledby="home-tab-justify">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <div class="row">
+                          <!-- ============================================================== -->
+                          <!-- data table  -->
+                          <!-- ============================================================== -->
+                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                              <div class="card">
+
+                                  <div class="card-body">
+                                      <div class="table-responsive">
+                                          <table id="example" class="table table-striped table-bordered second" style="width:100%">
+
+
+                                              <?php if($fournisseur_info['service'] == 'reparation'){ ?>
+                                              <thead>
+                                                  <tr>
+                                                    <th>Mecanicien</th>
+                                                    <th>Date mise circulation</th>
+                                                    <th>Date entreé garage</th>
+                                                    <th>Date sortie garage</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                <?php foreach($fournisseur_info as $car): ?>
+                                                  <tr>
+                                                    <td><?php echo $car['mecanicien']; ?></td>
+                                                    <td><?php echo $car['date_mise_circulation']; ?></td>
+                                                    <td><?php echo $car['date_entree_garage']; ?></td>
+                                                    <td><?php echo $car['date_sortie_garage']; ?></td>
+                                                  </tr>
+                                                <?php endforeach; ?>
+                                              </tbody>
+                                            <?php }elseif($fournisseur_info['service'] == 'vente'){?>
+                                              <thead>
+                                                  <tr>
+                                                    <th>Marque</th>
+                                                    <th>Model</th>
+                                                    <th>Date achat</th>
+                                                    <th>Prix total</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                <?php foreach($fournisseur_history as $car): ?>
+                                                  <tr>
+                                                    <td><?php echo $car['marque']; ?></td>
+                                                    <td><?php echo $car['model']; ?></td>
+                                                    <td><?php echo $car['date_achat']; ?></td>
+                                                    <td><?php echo $car['prix_achat_ttc']; ?></td>
+                                                  </tr>
+                                                <?php endforeach; ?>
+                                              </tbody>
+                                            <?php } ?>
+                                          </table>
+
+                                          <!-- pagination -->
+                                          <div class="row mt-3">
+
+                                            <div class="col-sm-12 col-md-7">
+                                              <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                                              <ul class="pagination">
+                                                <?php if($current_pageFournisseur>1): ?>
+
+                                                <li class="paginate_button page-item previous " id="example_previous">
+                                                  <a href="?id=<?php echo $id;?>&page<?php echo $service;?>=<?php echo $current_pageFournisseur-1; ?>" aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                                               </li>
+
+                                              <?php endif;?>
+
+                                                <?php for($i=1;$i<=$PagesFounrisseur;$i++):?>
+
+                                                <li class="paginate_button page-item ">
+                                                  <a href="?id=<?php echo $id;?>&page<?php echo $service;?>=<?php echo $i; ?>" aria-controls="example" data-dt-idx="2" tabindex="0" class="page-link"><?php echo $i; ?></a>
+                                                </li>
+
+                                              <?php endfor; ?>
+
+                                              <?php if($current_pageFournisseur < $PagesFounrisseur): ?>
+
+                                              <li class="paginate_button page-item next" id="example_next">
+                                                <a href="?id=<?php echo $id;?>&page<?php echo $service;?>=<?php echo $current_pageFournisseur+1; ?>" aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+                                              </li>
+
+                                            <?php endif; ?>
+
+                                              </ul>
+                                            </div>
+                                          </div>
+                                        </div>
+
+
+
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- ============================================================== -->
+                          <!-- end data table  -->
+                          <!-- ============================================================== -->
+                      </div>
+
+
+
+
+                    </div>
               <?php }else { ?>
                 <div class="tab-pane fade show " id="carInfo-justify" role="tabpanel" aria-labelledby="info-tab-justify">
 
@@ -656,7 +774,7 @@
                                       <div class="table-responsive">
                                           <table id="example" class="table table-striped table-bordered second" style="width:100%">
 
-                                        
+
                                               <?php if($fournisseur_info['service'] == 'reparation'){ ?>
                                               <thead>
                                                   <tr>
@@ -676,7 +794,7 @@
                                                   </tr>
                                                 <?php endforeach; ?>
                                               </tbody>
-                                            <?php }else{?>
+                                            <?php }elseif($fournisseur_info['service'] == 'vente'){?>
                                               <thead>
                                                   <tr>
                                                     <th>Marque</th>
