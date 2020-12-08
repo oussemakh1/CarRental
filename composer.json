@@ -1,0 +1,11 @@
+{
+    "require": {
+        "phpunit/phpunit": "^7.5",
+        "tegimus/php-izitoast": "^1.0"
+    },
+    "autoload":{
+      "classmap":[
+        "Modals"
+      ]
+    }
+}
