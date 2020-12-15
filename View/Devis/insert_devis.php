@@ -17,7 +17,7 @@ $devis = new DevisController();
 //Insert devis
 if(isset($_POST['insert_devis']))
 {
-
+    $discount = getDiscount($_POST['remise'],$_POST['prix']);
   $dataDevis = [
 
     "nom_client"=>$_POST['nom_client'],
@@ -26,7 +26,7 @@ if(isset($_POST['insert_devis']))
     "codepostal_client"=>    $_POST['codepostal_client'],
     "nb_jour" =>   $_POST['nb_jour'],
     "prix" =>   $_POST['prix'],
-    "remise" =>  getDiscount($_POST['remise'],$_POST['prix']),
+    "remise" =>  $discount,
     "total" =>     ($_POST['prix'] - $_POST['remise']),
     "date_devis" =>   $_POST['date_devis'],
     "date_validite" =>   $_POST['date_validite'],

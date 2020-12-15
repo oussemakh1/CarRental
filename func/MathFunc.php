@@ -5,7 +5,7 @@
   //Remise
    function getDiscount($remise,$prix_ht){
         if($remise > 0 ){
-          return ($remise/100) * $prix_ht;
+          return ($remise / 100) * $prix_ht;
         }else{
           $remise =0;
           return $remise;

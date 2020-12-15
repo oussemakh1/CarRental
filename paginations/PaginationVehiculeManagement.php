@@ -76,8 +76,8 @@ class PaginationVehiculeManagaement
 
       $query = "SELECT cars.n_serie,cars.marque,cars.model,reservation.cin as res_cin,reservation.date_depart,reservation.date_retour,reservation.heure_retour,reservation.nb_jour,
 			reservation.id AS res_id ,cars.id AS car_id,reservation.date_depart,reservation.date_retour FROM cars INNER JOIN reservation ON
-       cars.n_serie = (SELECT reservation.n_serie FROM reservation WHERE reservation.date_retour > CURRENT_DATE()
-			AND reservation.isDone = 'not done') ORDER BY reservation.id LIMIT $start,$this->limit";
+       cars.n_serie IN (SELECT reservation.n_serie FROM reservation WHERE reservation.date_retour > CURRENT_DATE()
+			AND reservation.isDone = 'not done') ORDER BY reservation.id DESC LIMIT $start,$this->limit";
       $execute = $this->db->query($query);
       if($execute){
       return $execute->fetchAll();
@@ -110,7 +110,7 @@ class PaginationVehiculeManagaement
        }
 
        $query = "SELECT *,reparation.id as repId
-                 FROM  cars INNER JOIN reparation ON  cars.n_serie =  (SELECT reparation.n_serie FROM reservation WHERE reparation.date_sortie_garage > CURRENT_DATE())
+                 FROM  cars INNER JOIN reparation ON  cars.n_serie IN  (SELECT reparation.n_serie FROM reservation WHERE reparation.date_sortie_garage > CURRENT_DATE())
                        ORDER BY reparation.id DESC  LIMIT $start,$this->limit";
        $execute = $this->db->query($query);
        if($execute){

@@ -22,7 +22,14 @@
 
 
    //Get fournisseur history
-   $fournisseur_history  = $PagintationFournisseur->get_data();
+     if(!empty($fournisseur_info['societe']))
+     {
+         $fournisseur_name = $fournisseur_info['societe'];
+
+     } else {
+         $fournisseur_name = $fournisseur_info['civilite'];
+     }
+   $fournisseur_history  = $PagintationFournisseur->get_data($fournisseur_name);
 
    if(isset($_POST['delete_fournisseur'])){
 
@@ -412,7 +419,7 @@
                                                     <td><?php echo $car['date_entree_garage']; ?></td>
                                                     <td><?php echo $car['date_sortie_garage']; ?></td>
                                                       <td>
-                                                          <a href="../Reparation/reparation_info.php?id=12<?php $car['id'];?>">
+                                                          <a href="../Reparation/reparation_info.php?id=<?php echo $car['id'];?>">
                                                               <i class="fas fa-address-book"></i>
 
                                                           </a>

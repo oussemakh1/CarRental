@@ -441,7 +441,7 @@ public function update_location($id,$data){
     "remisePercentage" => $this->remise,
     "remise" =>   $getDiscount,
     "total" =>   $this->prix_ttc,
-    "date_fact" => $this->date_fact,
+    "date_fact" =>date('Y-m-d'),
     "date_reglement" =>   $this->paye_le,
     "date_acompte" =>   $this->date_acompte,
     "mode_reglement" =>   $this->mode_paiement,
@@ -467,11 +467,13 @@ public function update_location($id,$data){
                                                   tva =?,
                                                   remise = ?,
                                                   total = ?,
-                                                  date_reglement = ?,
+                                                  date_fact = ?,
                                                   mode_reglement = ?,
                                                   mode_livraison = ?
                                                   cin = ?
                                                   WHERE location_id  = ?";
+
+      $today = date('Y-m-d');
       $update_facture = $this->db->update($query,[
 
       $this->nom,
@@ -484,7 +486,7 @@ public function update_location($id,$data){
         $this->tva,
         $this->remise,
       $this->prix_ttc,
-        $this->paye_le,
+          $today,
         $this->mode_paiement,
       $this->lieu_delivrance,
        $this->cin,

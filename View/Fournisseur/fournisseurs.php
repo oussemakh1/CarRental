@@ -23,7 +23,7 @@ $FournisseurController = new FournisseurController();
 
 
 //Paginatin
-require_once '../../lib/Pagination.php';
+require_once '../../paginations/Pagination.php';
 //Pagination modal
 $Pagination = new Pagination('fournisseur');
 $Fournisseur = $Pagination->get_data();

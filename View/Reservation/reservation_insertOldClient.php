@@ -10,7 +10,7 @@ if(isset($_GET['cin'],$_GET['marque_vehicule'],$_GET['n_serie'])){
   //Location Controller
   include '../../Controllers/ReservationController.php';
 
-  include '../../lib/DateFunc.php';
+  include '../../func/DateFunc.php';
 
 
     //Inherit client controller

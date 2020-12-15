@@ -55,7 +55,7 @@
 
         <div class="card mt-2" id="facture">
             <div class="card-header p-4">
-                 <a class="pt-2 d-inline-block" href="index.html">Concept</a>
+                 <a class="pt-2 d-inline-block"><?php echo $company_data['nom_societe']; ?></a>
 
                 <div class="float-right"> <h3 class="mb-0">Devis
                   <?php if(!empty($devis_data['date_devis'])){ ?>
@@ -137,7 +137,7 @@
                                 <td><?php echo $data['remise']; ?></td>
                                 <td>
                                 <?php if($data['remise']){ ?>
-                                  <?php echo ($data['prix'] - $data['remise']); ?>
+                                  <?php echo ( $data['prix'] - $data['prix'] * ($data['remise']/100) ); ?>
                                 <?php }else{ echo $data['prix']; } ?>
                                 </td>
 
@@ -156,10 +156,11 @@
                 </p>
             </div>
         </div>
+        <div class="text-center">
+            <a href="devis_edit.php?reservation_id=<?php echo $data['reservation_id'];?>" class="btn btn-outline-success mt-3">Modifier</a>
+        </div>
     </div>
-    <div class="text-center">
-        <a href="devis_edit.php?reservation_id=<?php echo $data['reservation_id'];?>" class="btn btn-outline-success mt-3">Modifier</a>
-    </div>
+
 </div>
 
 

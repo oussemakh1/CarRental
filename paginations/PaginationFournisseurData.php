@@ -20,7 +20,7 @@ class PaginationFournisseurData
   {
     if($this->service == 'vente'){
       //Query
-      $query = "SELECT * FROM cars INNER JOIN fournisseur ON fournisseur.societe = cars.fournisseur OR fournisseur.civilite = cars.fournisseur WHERE fournisseur.service = '$this->service'";
+      $query = "SELECT * FROM cars INNER JOIN fournisseur ON fournisseur.societe = cars.fournisseur OR fournisseur.civilite = cars.fournisseur WHERE fournisseur.service = 'vente'";
       $execute = $this->db->query($query);
       if($execute)
       {
@@ -29,7 +29,7 @@ class PaginationFournisseurData
       }
     }elseif($this->service == 'reparation'){
       //Query
-      $query = "SELECT * FROM reparation INNER JOIN fournisseur ON fournisseur.societe = reparation.mecanicien OR fournisseur.civilite = reparation.mecanicien WHERE fournisseur.service = '$this->service'";
+      $query = "SELECT * FROM reparation INNER JOIN fournisseur ON fournisseur.societe = reparation.mecanicien OR fournisseur.civilite = reparation.mecanicien WHERE fournisseur.service = 'reparation'";
       $execute = $this->db->query($query);
 
       if($execute)
@@ -47,7 +47,7 @@ class PaginationFournisseurData
     return isset($_GET['page'.$this->service]) ? (int)$_GET['page'.$this->service] : 1;
   }
 
-   public function get_data()
+   public function get_data($name)
    {
      $start = 0;
      if($this->current_page() >1){
@@ -56,7 +56,8 @@ class PaginationFournisseurData
 
      if($this->service == 'vente'){
        //Query
-       $query = "SELECT cars.* FROM cars INNER JOIN fournisseur ON fournisseur.societe = cars.fournisseur OR fournisseur.civilite = cars.fournisseur WHERE fournisseur.service = '$this->service' LIMIT $start,$this->limit";
+       //$query = "SELECT cars.* FROM cars INNER JOIN fournisseur ON fournisseur.societe = cars.fournisseur OR fournisseur.civilite = cars.fournisseur WHERE fournisseur.service = 'vente' LIMIT $start,$this->limit";
+       $query = "SELECT * FROM cars WHERE fournisseur = '$name' ";
        $execute = $this->db->query($query);
        if($execute){
          return $execute->fetchAll();
@@ -64,7 +65,8 @@ class PaginationFournisseurData
 
      }elseif($this->service == 'reparation'){
        //Query
-       $query = "SELECT * FROM reparation INNER JOIN fournisseur ON fournisseur.societe = reparation.mecanicien OR fournisseur.civilite = reparation.mecanicien WHERE fournisseur.service = 'reparation' LIMIT $start,$this->limit";
+       //$query = "SELECT reparation.* FROM reparation INNER JOIN fournisseur ON reparation.mecanicien = fournisseur.societe  OR reparation.mecanicien = fournisseur.civilite  WHERE fournisseur.service = 'reparation' LIMIT $start,$this->limit";
+       $query = "SELECT * FROM reparation WHERE mecanicien = '$name'";
        $execute = $this->db->query($query);
 
        if($execute){
