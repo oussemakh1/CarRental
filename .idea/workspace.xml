@@ -6,15 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="04f69739-c62a-4b45-b1f7-cf181bd53e37" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modals/Location.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modals/Location.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Devis/devis.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Devis/devis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Devis/insert_devis.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Devis/insert_devis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Fournisseur/fournisseur_info.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Fournisseur/fournisseur_info.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Fournisseur/fournisseurs.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Fournisseur/fournisseurs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Reservation/reservation_insertOldClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Reservation/reservation_insertOldClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/func/MathFunc.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/MathFunc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paginations/PaginationFournisseurData.php" beforeDir="false" afterPath="$PROJECT_DIR$/paginations/PaginationFournisseurData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paginations/PaginationVehiculeManagement.php" beforeDir="false" afterPath="$PROJECT_DIR$/paginations/PaginationVehiculeManagement.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +150,7 @@
       <workItem from="1607972987659" duration="587000" />
       <workItem from="1607974978957" duration="586000" />
       <workItem from="1607977420918" duration="575000" />
+      <workItem from="1608018282156" duration="949000" />
     </task>
     <servers />
   </component>
