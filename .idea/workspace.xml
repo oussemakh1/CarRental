@@ -5,7 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f69739-c62a-4b45-b1f7-cf181bd53e37" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/CarRental.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CarRental.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modals/Location.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modals/Location.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modals/Reservation.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modals/Reservation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Activation/activation.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Activation/activation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/CompanyInfo/company_info_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/CompanyInfo/company_info_edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Devis/devis.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Devis/devis.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Locations/Location_insert.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Locations/Location_insert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Locations/Location_insertOldClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Locations/Location_insertOldClient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Reservation/reservation_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Reservation/reservation_edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Reservation/reservation_info.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Reservation/reservation_info.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/includes/analyticsScripts.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/includes/analyticsScripts.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/includes/footer.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/includes/footer.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/func/Validations.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/Validations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paginations/PaginationVehiculeManagement.php" beforeDir="false" afterPath="$PROJECT_DIR$/paginations/PaginationVehiculeManagement.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +172,10 @@
       <workItem from="1607974978957" duration="586000" />
       <workItem from="1607977420918" duration="575000" />
       <workItem from="1608018282156" duration="949000" />
+      <workItem from="1608929548783" duration="1523000" />
+      <workItem from="1608931376720" duration="1225000" />
+      <workItem from="1608992216336" duration="573000" />
+      <workItem from="1608994911699" duration="1505000" />
     </task>
     <servers />
   </component>

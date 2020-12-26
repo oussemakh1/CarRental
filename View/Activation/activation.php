@@ -1,4 +1,3 @@
-
 <?php
 
 //include database
@@ -7,7 +6,7 @@ include_once '../../lib/Database.php';
 $db = new Database();
 $q = "SELECT * FROM activation";
 $fetch = $db->query($q);
-$code_activation = $fetch->fetch();
+$code_activation = $fetch->fetchAll();
 //Check if company info is set
 $q2 = "SELECT * FROM company_info";
 $fetch2 = $db->query($q2);
@@ -33,14 +32,7 @@ if(!$code_activation){
 
 }
 
-
-
-
-
-
- ?>
-
-
+?>
 <!doctype html>
 <html lang="en">
 

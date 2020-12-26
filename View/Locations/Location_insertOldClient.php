@@ -131,7 +131,6 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                     $date_retour = $_POST['date_retour'];
                     $deja_relgle_acompt = $_POST['deja_regle_acompte'];
                     $date_acompte = $_POST['date_acompte'];
-                    echo var_dump($date_acompte);
                     if($date_depart > $date_retour or $date_depart == $date_retour) {
                         errorInValues("date retour doit etre superieur a date depart!");
                     }
@@ -144,11 +143,11 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                             $reservation_id = $_GET['reservation_id'];
                             $reservationController = new ReservationController();
                             $changeReservationStatus = $reservationController->ReservationSuccess($reservation_id);
-
                         }
 
                         $locationController = new LocationController();
                         $insertCar = $locationController->insert_location($data);
+
                     }
 
 

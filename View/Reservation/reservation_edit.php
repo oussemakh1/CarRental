@@ -125,7 +125,7 @@ if(isset($_GET['reservation_id'])){
                                 <input name="nom" value="<?php echo $reservation_data['nom']; ?>" class="form-control" type="text" hidden >
                             </div>
                             <div class="form-group ">
-                                <input name="prenom"  value="<?php $reservation_data['prenom']; ?>" class="form-control" type="text" hidden>
+                                <input name="prenom"  value="<?php echo $reservation_data['prenom']; ?>" class="form-control" type="text" hidden>
                             </div>
                             <div class="form-group ">
                                 <input name="date_naissance" value="<?php echo $reservation_data['date_naissance']; ?>" type="date" class="form-control" hidden>

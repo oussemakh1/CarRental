@@ -141,7 +141,7 @@ public function insert_reservation($data){
       $query = "SELECT n_serie FROM reservation WHERE n_serie = ? AND  status ='Succed' AND date_retour < current_date()";
       $Check = $this->db->select($query,[$this->n_serie]);
       if ($Check) {
-          header("Location:../Vehicules/Vehiules.php?error_message=Cette vehicule deja en reservation!");
+          header("Location:../Vehicules/Vehicules.php?error_message=Cette vehicule deja en reservation!");
       } else {
           //Query
           $query = "INSERT INTO  reservation(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,n_permis,code_postal,lieu_delivrance,date_delivrance,nb_jour,date_depart,
@@ -285,5 +285,12 @@ public function fetch_allReservation(){
   }
 }
 
+
+public function ReservationSuccess ($id)
+{
+    //query
+    $query = "UPDATE reservation SET isDone = 'done' WHERE id = $id";
+    $reservation_success = $this->db->query($query);
+}
 
 }

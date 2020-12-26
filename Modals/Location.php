@@ -103,9 +103,8 @@ public function Location_data_collect($data){
 
 //Insert new Location
 public function insert_Location($data){
-    $this->Location_data_collect($data);
 
-
+  $this->Location_data_collect($data);
   //check database if cin exists
   $query = "SELECT * FROM clients WHERE cin = ?";
   $fetch_client = $this->db->select($query,[$this->cin]);
@@ -122,11 +121,11 @@ public function insert_Location($data){
                                             $this->telephone,$this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$this->type_client]);
 
 
-                                            //Check if client exists in location
-                                            $query = "SELECT n_serie FROM location WHERE n_serie =? AND date_retour > CURRENT_DATE() ";
+                                            //Check if car exists in location
+                                            $query = "SELECT n_serie FROM location WHERE n_serie = ? AND date_retour > CURRENT_DATE() ";
 
-                                            $fetch_client_Location = $this->db->select($query,[$this->n_serie]);
-                                            if(!$fetch_client_Location){
+                                            $fetch_car_Location = $this->db->select($query,[$this->n_serie]);
+                                            if(!$fetch_car_Location){
                                               //Insert new Location
                                               $query = "INSERT INTO  location(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,
                                                                                n_permis,code_postal,date_delivrance,lieu_delivrance,type_client,
@@ -219,7 +218,6 @@ public function insert_Location($data){
                                               //Error handeling
                                               if($insert_location){
                                                 return     header("Location:../Facture/facture.php?data=".urlencode(serialize($dataFinal))."");                                              }else{
-                                                return insert_error_message();
                                               }
                                             }else{
                                               return error_message('client in location');
@@ -233,8 +231,8 @@ public function insert_Location($data){
     //Check if car exists in location
     $query = "SELECT n_serie FROM location WHERE n_serie =? AND date_retour > CURRENT_DATE()";
 
-    $fetch_client_Location = $this->db->select($query,[$this->n_serie]);
-    if(!$fetch_client_Location){
+    $fetch_car_Location = $this->db->select($query,[$this->n_serie]);
+    if(!$fetch_car_Location){
       //Insert new Location
       $query = "INSERT INTO  location(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,
                                        n_permis,code_postal,date_delivrance,lieu_delivrance,type_client,

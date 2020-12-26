@@ -639,7 +639,7 @@ $current_page = $Pagination->current_page();
 
                                             <!--
                                             <div class="col-sm-12 col-md-6">
-                                                <form action="<?php $_SERVER['PHP_SELF'];?>" method="GET">
+                                                <form action="<?php //$_SERVER['PHP_SELF'];?>" method="GET">
                                                     <div id="example_filter" class="dataTables_filter">
                                                         <input type="search" name="search" class="form-control form-control-sm" placeholder="chercher quelque chose..." aria-controls="example">
                                                     </div>

@@ -111,7 +111,7 @@ class Database
         //Query
         $query =" UPDATE reservation INNER JOIN devis ON reservation.id = devis.reservation_id 
                   SET reservation.status = 'Failed'
-                  WHERE devis.date_validite < CURRENT_DATE() AND reservation.isDone = 'notDone'
+                  WHERE devis.date_validite < CURDATE() AND reservation.isDone = 'notDone'
                   "
                 ;
 

@@ -301,6 +301,8 @@ if(isset($_GET['reservation_id'])){
 
 <div class="text-center">
     <a  href="reservation_edit.php?reservation_id=<?php echo $id;?>" class="mb-0 btn btn-outline-success">Modifier</a>
+    <a  href="../Devis/devis_info.php?reservation_id=<?php echo $id;?>" class="mb-0 btn btn-outline-success">Voir Devis</a>
+
 </div>
 
 
