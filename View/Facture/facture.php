@@ -42,7 +42,7 @@
 
 
 
-    <div class="offset-xl-3 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="offset-xl-3 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
 
       <button class="btn btn-outline-light buttons-excel buttons-html5" id="export_excel"tabindex="0" aria-controls="example" type="button">
         <span>Excel</span>
@@ -94,7 +94,7 @@
                         <div>Telephone:<?php echo $data['telephone_client']; ?></div>
                     </div>
                 </div>
-                <div class="table-responsive-sm">
+                <div class="table-responsive-md">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -118,14 +118,14 @@
                     </table>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-sm-5">
+                    <div class="col-lg-12">
                     </div>
-                    <div class="col-lg-4 col-sm-5 ml-auto">
+                    <div class="col-lg-12 ml-auto">
                         <table class="table table-clear">
                             <tbody>
                                 <tr>
                                     <td class="left">
-                                        <strong class="text-dark">Subtotal</strong>
+                                        <strong class="text-dark">Prix HT</strong>
                                     </td>
                                     <td class="right"><?php echo $data['prix']; ?></td>
                                 </tr>
@@ -139,11 +139,12 @@
                                 </tr>
                                 <tr>
                                     <td class="left">
-                                        <strong class="text-dark">TVA (<?php  if($data['remise'] > 0){  echo (data['tva'] * 100) / ($data['prix'] - $data['remise']); }else {echo (data['tva'] * 100) / $data['prix'];} ?>%)</strong>
+                                        <strong class="text-dark">TVA(<?php  if($data['remise'] > 0){  echo ($data['tva_fact'] * 100) / ($data['prix'] - $data['remise']); }else {echo ($data['tva_fact'] * 100) / $data['prix'];} ?>%)
+                                        </strong>
                                     </td>
                                     <td class="right"><?php
 
-                                       echo  $data['tva'];
+                                       echo  $data['tva_fact'];
 
                                      ?></td>
 

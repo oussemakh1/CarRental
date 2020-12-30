@@ -33,7 +33,7 @@ class Location{
   private $cin;
   private $type_client;
   private $marque_vehicule;
-
+  private $remise;
   private $etat_vehicule;
   private $assurance;
   private $caution;

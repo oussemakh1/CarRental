@@ -160,8 +160,8 @@ public function delete_facture($id){
 //Fetch facture by id
 public function fetch_facture($id){
   //Query
-  $query  = "SELECT facture.*,location.date_depart,location.date_retour,location.marque_vehicule 
-             FROM facture INNER JOIN ON facture.location_id = location.id  WHERE location_id = ?";
+  $query  = "SELECT *,facture.tva as tva_fact,location.date_depart,location.date_retour,location.marque_vehicule 
+             FROM facture INNER JOIN location ON facture.location_id = location.id  WHERE location_id = ?";
 
   $fetch_facture = $this->db->select($query,[$id]);
 
