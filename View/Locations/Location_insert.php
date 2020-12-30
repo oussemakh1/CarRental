@@ -112,7 +112,7 @@ $current_page = $Pagination->current_page();
         "lieu_retour"=>$_POST['lieu_retour'],
         "remise"=>$_POST['remise'],
         "n_serie" => $_POST['n_serie'],
-        "prix_ttc" =>''
+         "prix_ttc"=>getTotal($_POST['remise'],$_POST['prix_ht'],$_POST['tva'])
 
         ];
 

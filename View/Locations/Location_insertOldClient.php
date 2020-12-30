@@ -105,7 +105,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                         "heure_retour"=>$_POST['heure_retour'],
                         "prix_ht"=>$_POST['prix_ht'],
                         "tva"=>$_POST['tva'],
-                        "prix_ttc"=>$_POST['prix_ttc'],
+                        "prix_ttc"=>getTotal($_POST['remise'],$_POST['prix_ht'],$_POST['tva']),
                         "paye_le"=>$_POST['paye_le'],
                         "deja_regle_acompte"=>$_POST['deja_regle_acompte'],
                         "date_acompte"=>$_POST['date_acompte'],

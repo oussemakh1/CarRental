@@ -7,7 +7,7 @@
   //include validation
   include_once '../../func/Validations.php';
   //Math funtions
-  include '../../func/MathFunc.php';
+  include_once '../../func/MathFunc.php';
   //DateDif
   include_once '../../func/DateFunc.php';
   //Facture
