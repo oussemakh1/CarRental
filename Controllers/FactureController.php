@@ -1,6 +1,6 @@
 <?php
  //Facture
- include '../../Modals/Facture.php';
+ include_once '../../Modals/Facture.php';
 
 class FactureController
 {

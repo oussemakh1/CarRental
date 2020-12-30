@@ -3,6 +3,8 @@
 
   //include databae
   include_once '../../lib/Database.php';
+  //include messages
+  include_once '../../func/messages.php';
 
 
 
@@ -78,11 +80,16 @@ public function insert_facture($data){
                                   ";
 
     //Insert facture
-    $new_facture = $this->db->insert($query,[
-      $this->nom_client,$this->prenom_client,$this->telephone_client,
-                                     $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,$this->remise,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
-                                     $this->location_id,$this->cin
-     ]);
+    $new_facture = $this->db->insert(
+        $query,
+        [
+            $this->nom_client,$this->prenom_client,$this->telephone_client,
+            $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,
+            $this->prix,$this->tva,$this->remise,$this->total,$this->date_fact,
+            $this->date_reglement,$this->date_acompte,$this->mode_reglement,
+            $this->mode_livraison, $this->location_id,$this->cin
+       ]
+    );
 
    //Error Handeling
   
@@ -113,9 +120,8 @@ public function update_facture($id,$data){
                                date_acompte=?,
                                mode_reglement=?,
                                mode_livraison=?,
-                               location_id=?,
                                cin=?
-                               WHERE id =?
+                               WHERE location_id=?
                                ";
 
 
@@ -125,12 +131,10 @@ public function update_facture($id,$data){
   $facture_update = $this->db->update($query,[
     $this->nom_client,$this->prenom_client,$this->telephone_client,
     $this->code_postal_client,$this->nom_adress_fact,$this->nb_jour,$this->prix,$this->tva,$this->remise,$this->total,$this->date_fact,$this->date_reglement,$this->date_acompte,$this->mode_reglement,$this->mode_livraison,
-    $this->locaiton_id,$this->cin,$id
+    $this->cin,$id
   ]);
 
-  //Error handling
-  if($facture_update){
-  }else{
+  if(!$facture_update){
     return update_error_message();
   }
 }
@@ -156,7 +160,8 @@ public function delete_facture($id){
 //Fetch facture by id
 public function fetch_facture($id){
   //Query
-  $query  = "SELECT * FROM facture WHERE location_id = ?";
+  $query  = "SELECT facture.*,location.date_depart,location.date_retour,location.marque_vehicule 
+             FROM facture INNER JOIN ON facture.location_id = location.id  WHERE location_id = ?";
 
   $fetch_facture = $this->db->select($query,[$id]);
 

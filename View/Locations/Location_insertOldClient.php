@@ -10,15 +10,12 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
   include '../../Controllers/ReservationController.php';
 
 
+  // inherit clients controller
+  $clientController = new ClientController();
 
 
-    //Inherit client controller
-    $clientController = new ClientController();
-
-
-
-   //Inherit location controller
-   $locationController = new LocationController();
+  // inherit location controller
+  $locationController = new LocationController();
 
 
   //Get car data
@@ -26,29 +23,20 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
   $n_serie = $_GET['n_serie'];
   $cin = $_GET['id'];
 
+  $find_Client = $clientController->getClientByCin($cin);
 
-    $find_Client = $clientController->getClientByCin($cin);
-
-
-      $nom = $find_Client['nom'];
-      $prenom = $find_Client['prenom'];
-      $email = $find_Client['email'];
-      $date_naissance = $find_Client['date_naissance'];
-      $telephone = $find_Client['telephone'];
-      $cin = $find_Client['cin'];
-      $adress = $find_Client['adress'];
-      $ville = $find_Client['ville'];
-      $pays =$find_Client['pays'];
-      $n_permis = $find_Client['n_permis'];
-      $code_postal = $find_Client['code_postal'];
-      $type_client = $find_Client['type_client'];
-
-
-
-
-
-
-
+  $nom = $find_Client['nom'];
+  $prenom = $find_Client['prenom'];
+  $email = $find_Client['email'];
+  $date_naissance = $find_Client['date_naissance'];
+  $telephone = $find_Client['telephone'];
+  $cin = $find_Client['cin'];
+  $adress = $find_Client['adress'];
+  $ville = $find_Client['ville'];
+  $pays =$find_Client['pays'];
+  $n_permis = $find_Client['n_permis'];
+  $code_postal = $find_Client['code_postal'];
+  $type_client = $find_Client['type_client'];
 
 
   }
@@ -86,7 +74,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                 <!-- Insert location -->
                 <?php
                     //Insert Location
-                    if(isset($_POST['insert_location']))
+                if(isset($_POST['insert_location']))
                 {
 
                     $data = [
@@ -131,6 +119,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                     $date_retour = $_POST['date_retour'];
                     $deja_relgle_acompt = $_POST['deja_regle_acompte'];
                     $date_acompte = $_POST['date_acompte'];
+
                     if($date_depart > $date_retour or $date_depart == $date_retour) {
                         errorInValues("date retour doit etre superieur a date depart!");
                     }
@@ -139,14 +128,14 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                     }
                     else {
 
-                        if(isset($_GET['reservation_id'])){
+                       if(isset($_GET['reservation_id'])){
                             $reservation_id = $_GET['reservation_id'];
                             $reservationController = new ReservationController();
                             $changeReservationStatus = $reservationController->ReservationSuccess($reservation_id);
-                        }
+                        } 
 
-                        $locationController = new LocationController();
-                        $insertCar = $locationController->insert_location($data);
+                       $locationController = new LocationController();
+                       $insertCar = $locationController->insert_location($data); 
 
                     }
 

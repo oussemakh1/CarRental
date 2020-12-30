@@ -231,7 +231,7 @@ class DashboardController
        $query = "SELECT COUNT(id) FROM cars WHERE cars.n_serie
                                   NOT IN(SELECT reparation.n_serie FROM reparation WHERE reparation.date_sortie_garage > CURRENT_DATE())
                                   AND cars.n_serie NOT IN(SELECT n_serie FROM location WHERE location.date_retour > CURRENT_DATE())
-                                   AND cars.n_serie NOT IN(SELECT n_serie FROM reservation WHERE reservation.date_retour > CURRENT_DATE())
+                                   AND cars.n_serie NOT IN(SELECT n_serie FROM reservation WHERE reservation.date_retour > CURRENT_DATE() AND reservation.status = 'Succed')
                                  ";
         $dispoCar = $this->db->query($query);
 

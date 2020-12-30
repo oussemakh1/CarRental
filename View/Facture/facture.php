@@ -4,25 +4,16 @@
   include '../../Controllers/FactureController.php';
 
 
-  if(isset($_GET['data']))
+  if(isset($_GET['location_id']))
   {
-    $factureController = new FactureController();
-     $taken_data = $_GET['data'];
-     $data = unserialize($taken_data);
-     $factureController->insert_facture($data);
-          $company_data = $factureController->CompanyInfo();
+      $location_id = $_GET['location_id'];
+      $factureController = new FactureController();
+      $data = $factureController->getFacture($location_id);
+      $company_data = $factureController->CompanyInfo();
 
 
      
-  } 
-    elseif(isset($_GET['data_update']))
-  {
-    $factureController = new FactureController();
-    $company_data = $factureController->CompanyInfo();
-
-     $data = unserialize($_GET['data_update']);
   }
-
 
 
 
@@ -140,7 +131,7 @@
                                 </tr>
                                 <tr>
                                     <td class="left">
-                                        <strong class="text-dark">Remise (<?php echo $data['remisePercentage']; ?>%)</strong>
+                                        <strong class="text-dark">Remise (<?php  if($data['remise']>0){echo ($data['remise']*100) / $data['prix']; } else{echo 0;} ?>%)</strong>
                                     </td>
                                     <td class="right"><?php
                                                     echo    $data['remise'];
@@ -148,7 +139,7 @@
                                 </tr>
                                 <tr>
                                     <td class="left">
-                                        <strong class="text-dark">TVA (<?php echo $data['tvaPercentage']; ?>%)</strong>
+                                        <strong class="text-dark">TVA (<?php  if($data['remise'] > 0){  echo (data['tva'] * 100) / ($data['prix'] - $data['remise']); }else {echo (data['tva'] * 100) / $data['prix'];} ?>%)</strong>
                                     </td>
                                     <td class="right"><?php
 
