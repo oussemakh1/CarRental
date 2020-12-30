@@ -17,8 +17,7 @@
 
 class Location{
 
-private $db;
-
+  private $db;
   private $nom;
   private $prenom;
   private $date_naissance;
@@ -178,10 +177,10 @@ public function insert_Location($data){
         $insertFact = $fact->insert_facture($facture_data);
 
 
-        if($insert_location){
+        if($insert_location->rowCount() > 0){
             return header("Location:../Facture/facture.php?location_id=$locationId");
         } else {
-            return error_message('error!!');
+            return insert_error_message();
         }
 
 
