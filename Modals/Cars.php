@@ -27,7 +27,6 @@ private  $nombre_traites;
 private  $num_facture_fournisseur ;
 private  $color;
 private  $type_vehicule;
-private  $categorie ;
 private  $n_assurance;
 private  $detail_reparation;
 private  $n_serie ;
@@ -113,7 +112,6 @@ public function insert_car($data){
             $this->num_facture_fournisseur,
             $this->color,
             $this->type_vehicule,
-            $this->categorie,
             $this->n_assurance,
             $this->detail_reparation,
             $this->n_serie,
