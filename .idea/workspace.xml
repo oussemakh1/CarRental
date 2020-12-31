@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="04f69739-c62a-4b45-b1f7-cf181bd53e37" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modals/Location.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modals/Location.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Locations/Location_insertOldClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Locations/Location_insertOldClient.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +165,8 @@
       <workItem from="1609366088437" duration="1715000" />
       <workItem from="1609367988939" duration="1697000" />
       <workItem from="1609369968373" duration="1682000" />
-      <workItem from="1609415391154" duration="732000" />
+      <workItem from="1609415391154" duration="1656000" />
+      <workItem from="1609417279225" duration="1228000" />
     </task>
     <servers />
   </component>
@@ -264,18 +266,18 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="518" y="306" key="NewPhpFileDialog/0.0.1366.768@0.0.1366.768" timestamp="1606597025431" />
-    <state x="184" y="14" key="SettingsEditor" timestamp="1609359006123">
+    <state x="184" y="14" key="SettingsEditor" timestamp="1609416508094">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="184" y="14" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1609359006123" />
+    <state x="184" y="14" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1609416508094" />
     <state x="339" y="167" key="run.anything.popup" timestamp="1609360742790">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="339" y="167" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1609360742790" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1606845507764">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1609417588905">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1606845507764" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1609417588905" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

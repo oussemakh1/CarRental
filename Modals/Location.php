@@ -85,7 +85,6 @@ public function insert_Location($data){
               "code_postal" => $this->code_postal,
               "type_client" =>$this->type_client
            ];
-
       $client->insert_client($client_data);
   }
 
@@ -103,8 +102,7 @@ public function insert_Location($data){
                                         date_depart,heure_depart,date_retour,heure_retour,prix_ht,tva,prix_ttc,paye_le,
                                         deja_regle_acompte,date_acompte,lieu_retour,remise,n_serie
                                         )
-                               VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-                ;
+                               VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $insert_location = $this->db->insert(
             $query,
@@ -368,8 +366,6 @@ public function fetch_allLocation(){
 }
 
 
-
-
 //Data collector function
     private function Location_data_collect($data){
 
@@ -443,8 +439,6 @@ public function fetch_allLocation(){
             return false;
         }
     }
-
-
 
 }
 
