@@ -37,7 +37,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
             <!-- Insert Vehicule -->
             <?php
               if(isset($_POST['insert_car']))
-            {
+              {
 
                 $data = [
                     "fournisseur" =>$_POST['fournisseur'],
