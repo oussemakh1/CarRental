@@ -11,7 +11,7 @@ include_once '../../func/Validations.php';
 
 class Cars {
 
-private $db;
+private  $db;
 private  $fournisseur;
 private  $marque;
 private  $model;
@@ -19,13 +19,13 @@ private  $carburant;
 private  $date_achat;
 private  $duree_vie;
 private  $nb_km_avant_revision ;
-private $prix_achat_ht;
-private $tva;
-private $prix_achat_ttc;
-private $montant_traites_mensuel;
+private  $prix_achat_ht;
+private  $tva;
+private  $prix_achat_ttc;
+private  $montant_traites_mensuel;
 private  $nombre_traites;
 private  $num_facture_fournisseur ;
-private $color;
+private  $color;
 private  $type_vehicule;
 private  $categorie ;
 private  $n_assurance;
@@ -65,64 +65,70 @@ private function cars_data_collect($data){
 
 }
 
+
+private function carExist()
+{
+  $query ="SELECT n_serie FROM cars WHERE n_serie = ?";
+  $fetch_car = $this->db->select($query,[$this->n_serie]);
+
+  if($fetch_car)
+  {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 //Insert new car function
 public function insert_car($data){
 
     //Data collection
     $this->cars_data_collect($data);
-    echo $this->marque;
-
     //check if car already exists else insert it into database
-    $query ="SELECT n_serie FROM cars WHERE n_serie = ?";
-    $fetch_car = $this->db->select($query,[$this->n_serie]);
-    if($fetch_car){
-      $error_message = 'Cette vehicule deja exist!';
-      header('Location:?error='.$error_message);
-    }else{
-
+    $car_status = $this->carExist();
+    if($car_status == false){
       //Query
-      $query = "INSERT INTO cars (fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,
-        prix_achat_ht,tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,
-        type_vehicule,categorie,n_assurance,detail_reparation,n_serie,carte_grise
-      ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      $query = "INSERT INTO 
+                cars (fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,
+                prix_achat_ht,tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,
+                type_vehicule,categorie,n_assurance,detail_reparation,n_serie,carte_grise)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
       //Insert new car
-      $new_car = $this->db->insert($query,[
-        $this->fournisseur,
-        $this->marque,
-        $this->model,
-        $this->carburant,
-        $this->date_achat,
-        $this->duree_vie,
-        $this->nb_km_avant_revision ,
-        $this->prix_achat_ht,
-        $this->tva,
-        $this->prix_achat_ttc,
-        $this->montant_traites_mensuel,
-        $this->nombre_traites,
-        $this->num_facture_fournisseur,
-        $this->color,
-        $this->type_vehicule,
-        $this->categorie,
-        $this->n_assurance,
-        $this->detail_reparation,
-        $this->n_serie,
-        $this->carte_grise
+      $new_car = $this->db->insert(
+          $query,
+          [
+            $this->fournisseur,
+            $this->marque,
+            $this->model,
+            $this->carburant,
+            $this->date_achat,
+            $this->duree_vie,
+            $this->nb_km_avant_revision ,
+            $this->prix_achat_ht,
+            $this->tva,
+            $this->prix_achat_ttc,
+            $this->montant_traites_mensuel,
+            $this->nombre_traites,
+            $this->num_facture_fournisseur,
+            $this->color,
+            $this->type_vehicule,
+            $this->categorie,
+            $this->n_assurance,
+            $this->detail_reparation,
+            $this->n_serie,
+            $this->carte_grise
 
-      ]);
+          ]
+      );
       //Error handling
-      if($new_car){
+      if($new_car->rowCount() > 0){
         return header("Location:../Vehicules/Vehicules_all.php?insert_success");
       }else{
-        return header("Location:?insert_error");
+        return insert_error_message();
       }
 
     }
-
-
-
-
-
 }
 
 
@@ -183,7 +189,7 @@ public function update_car($id,$data){
   if($car_update->rowCount() > 0){
     return header("Location:../Vehicules/Vehicules_all.php?update_success");
   }else{
-    return header("Location:?update_error");
+    return update_error_message();
   }
 
 }
@@ -202,7 +208,7 @@ public function delete_car($id){
   if($delete_car){
     return header("Location:../Vehicules/Vehicules_all.php?delete_success");
   }else{
-    return header("Location:?delete_error");
+    return delete_error_message();
   }
 
 }

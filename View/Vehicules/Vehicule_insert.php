@@ -130,11 +130,10 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                             </div>
                             <div class="form-group col-md-3">
                                 <label >Date achat</label>
-                                <input name="date_achat" type="date" placeholder="marque vehicule ..." class="form-control">
+                                <input name="date_achat" type="date"  class="form-control">
                             </div>
                             <div class="form-group col-md-3">
-                                <label>Traites mensuel
-                                </label>
+                                <label>Traites mensuel</label>
                                 <input  name="montant_traites_mensuel" type="number" value="0" required class="form-control currency-inputmask" id="currency-mask" placeholder="Montant traites mensuel...">
                             </div>
                             <div class="form-group col-md-3">
@@ -260,85 +259,64 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                 </select>
                             </div>
 
-
-
-
                           </div>
-
-
-
-
-                                                    <!-- row  4-->
-                                                   <div class="row mt-3">
-
-                                                      <div class="form-group col-md-3">
-                                                          <label for="input-select">Type vehicule</label>
-                                                             <select name="type_vehicule" class="form-control" >
-                                                              <option value="Vehicule_classique">Vehicule classique </option>
-                                                              <option value="Utilitaire_type_kangoo">Utilitaire type kangoo</option>
-                                                              <option value="Utilitaire_type_traffic">Utilitaire type traffic</option>
-                                                             </select>
-                                                      </div>
-
-                                                      <div class="form-group col-md-3">
-                                                          <label for="hue-demo">Color</label>
-                                                          <input name="color" type="text" id="hue-demo" class="form-control demo" data-control="hue" required>
-                                                      </div>
-
-                                                      <div class="form-group col-md-4">
-                                                          <label>N°km
-                                                          </label>
-                                                          <input name="nb_km_avant_revision" value="0" required type="number" class="form-control currency-inputmask" id="currency-mask" placeholder="N°km avant revision..." >
-                                                      </div>
-
-
-                                                    </div>
-
-                                                    <!-- row  5-->
-                                                    <div class="row mt-3">
-
-                                                      <div class="form-group col-md-3">
-                                                          <label >Carte grise </label>
-                                                          <input name="carte_grise" type="text" class="form-control" placeholder="carte grise...">
-                                                      </div>
-
-                                                      <div class="form-group col-md-3">
-                                                          <label  >N°assurance</label>
-                                                          <input name="n_assurance" type="text" class="form-control" placeholder="N°assurance">
-                                                      </div>
-
-                                                      <div class="form-group col-md-3">
-                                                          <label>N°serie
-                                                          </label>
-                                                          <input name="n_serie" type="text" class="form-control" required placeholder="N° serie ..." >
-                                                      </div>
-                                                      <div class="form-group col-md-3">
-                                                          <label>N°facture
-                                                          </label>
-                                                          <input name="num_facture_fournisseur" type="number" class="form-control" placeholder="N°facture fournisseur..." >
-                                                      </div>
-
-
-                                                    </div>
-
-
-                                                                                                        <!-- row  6-->
-                                                                                                        <div class="row mt-3">
-
-                                                                                                          <div class="form-group col-md-12">
-                                                                                                              <label for="inputText3" >Detail reparation </label>
-                                                                                                              <textarea  name="detail_reparation"class="form-control"></textarea>
-                                                                                                          </div>
-
-
-
-
-                                                                                                        </div>
-                                                    <div class="text-center mt-4">
-                                                    <input name="insert_car" type="submit" value="Inserée" class="btn btn-outline-success">
-                                                  </div>
-
-
+                            <!-- row  4-->
+                            <div class="row mt-3">
+                                <div class="form-group col-md-3">
+                                    <label for="input-select">Type vehicule</label>
+                                    <select name="type_vehicule" class="form-control" >
+                                        <option value="Economy">Economy</option>
+                                        <option value="Mini">Mini</option>
+                                        <option value="Citadine">Citadine</option>
+                                        <option value="Compact">Compact</option>
+                                        <option value="Familial">Familial</option>
+                                        <option value="Special">Special</option>
+                                        <option value="Berline">Berline</option>
+                                        <option value="SUV Crossover">SUV Crossover</option>
+                                        <option value="SUV Urbain">SUV Urbain</option>
+                                        <option value="PICK UP">PICK UP</option>
+                                        <option value="Monospaces">Monospaces</option>
+                                        <option value="MINIVAN">MINIVAN</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="hue-demo">Color</label>
+                                    <input name="color" type="text" class="form-control"  required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>N°km</label>
+                                    <input name="nb_km_avant_revision" value="0" required type="number" class="form-control"  placeholder="N°km avant revision..." >
+                                </div>
+                            </div>
+                            <!-- row  5-->
+                            <div class="row mt-3">
+                                <div class="form-group col-md-3">
+                                    <label >Carte grise </label>
+                                    <input name="carte_grise" type="text" class="form-control" placeholder="carte grise...">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label  >N°assurance</label>
+                                    <input name="n_assurance" type="text" class="form-control" placeholder="N°assurance">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>N°serie</label>
+                                    <input name="n_serie" type="text" class="form-control" required placeholder="N° serie ..." >
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>N°facture</label>
+                                    <input name="num_facture_fournisseur" type="number" class="form-control" placeholder="N°facture fournisseur..." >
+                                </div>
+                            </div>
+                            <!-- row  6-->
+                            <div class="row mt-3">
+                                <div class="form-group col-md-12">
+                                    <label for="inputText3" >Detail reparation </label>
+                                    <textarea  name="detail_reparation"class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <input name="insert_car" type="submit" value="Inserée" class="btn btn-outline-success">
+                            </div>
                         </form>
                     </div>
                 </div>
