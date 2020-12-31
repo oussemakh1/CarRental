@@ -95,7 +95,7 @@ public function insert_car($data)
                 type_vehicule,n_assurance,detail_reparation,n_serie,carte_grise)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-    try {
+
       //Insert new car
       $new_car = $this->db->insert(
           $query,
@@ -122,17 +122,13 @@ public function insert_car($data)
 
           ]
       );
-    }
-    catch(Exception $e)
-    {
-      return $e->getMessage();
-    }
-      /*Error handling
+
+      //Error handling
       if($new_car->rowCount() > 0){
         return header("Location:../Vehicules/Vehicules_all.php?insert_success");
       }else{
         return insert_error_message();
-      }*/
+      }
 
     }
 }
