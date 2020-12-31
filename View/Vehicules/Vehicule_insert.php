@@ -67,7 +67,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                 }
                 else {
                   // $carController->insertCar($data);
-                    echo $data;
+                    echo print_r($data);
                 }
 
 
