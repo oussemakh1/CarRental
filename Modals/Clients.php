@@ -9,8 +9,8 @@ include_once  '../../func/Validations.php';
 
 class Clients{
 
-private $db;
-private $nom;
+private  $db;
+private  $nom;
 private  $prenom;
 private  $email;
 private  $date_naissance;
@@ -21,16 +21,18 @@ private  $ville;
 private  $pays;
 private  $n_permis;
 private  $code_postal;
-private $type_client;
+private  $type_client;
+
 
 //Execute database connection
-public function __construct(){
+public function __construct()
+{
   $this->db = new Database();
 }
 
-
 //Data collector function
-private function clients_data_collect($data){
+private function clients_data_collect($data)
+{
 
 
 
@@ -46,49 +48,55 @@ private function clients_data_collect($data){
   $this->n_permis = $data['n_permis'];
   $this->code_postal = $data['code_postal'];
   $this->type_client = $data['type_client'];
-  /** Filtring data
-
-
-
-  **/
-
-
 
 }
 
+private function isClientExist()
+{
+  $query ="SELECT cin FROM clients WHERE cin = ?";
+  $fetch_client = $this->db->select($query,[$this->cin]);
+
+  if($fetch_client)
+  {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
 //Insert new client function
-public function insert_client($data){
-
-
+public function insert_client($data)
+{
   //Data collection
   $this->clients_data_collect($data);
 
   //Check if client exists
-  $query ="SELECT cin FROM clients WHERE cin = ?";
-  $fetch_client = $this->db->select($query,[$this->cin]);
-
-  if($fetch_client){
-    return header("Location:?error_message=Cette client deja exist!");
-  }else{
-
+  $client = $this->isClientExist();
+  if($client == "false"){
       //Query
       $query = "INSERT INTO  clients(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,n_permis,code_postal,type_client)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
       //Insert new client
-      $new_client = $this->db->insert($query,[$this->nom,$this->prenom,$this->email,$this->date_naissance,
-                                              $this->telephone,$this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$this->type_client]);
+      $new_client = $this->db->insert(
+          $query,
+          [
+              $this->nom,$this->prenom,$this->email,$this->date_naissance,
+              $this->telephone,$this->cin,$this->adress,$this->ville,
+              $this->pays,$this->n_permis,$this->code_postal,
+              $this->type_client
+          ]
+      );
 
       //Error handling
-      if($new_client){
+      if($new_client->rowCount() > 0){
         return header("Location:clients.php?insert_success");
       }else{
-        return header("Location:?insert_error");
+        return insert_error_message();
       }
 
     }
-
 
 }
 
@@ -114,16 +122,21 @@ public function update_client($cin,$data){
                                WHERE cin = ?
                                ";
   //Update client
-  $client_update = $this->db->update($query ,[
-    $this->nom,$this->prenom,$this->email,$this->date_naissance,$this->telephone,
-    $this->cin,$this->adress,$this->ville,$this->pays,$this->n_permis,$this->code_postal,$type_client,$cin
-  ]);
+  $client_update = $this->db->update(
+      $query ,
+      [
+          $this->nom,$this->prenom,$this->email,$this->date_naissance,$this->telephone,
+          $this->cin,$this->adress,$this->ville,$this->pays,
+          $this->n_permis,$this->code_postal,
+          $this->type_client,$cin
+      ]
+  );
 
   //Error Handeling
-  if($client_update){
+  if($client_update->rowCount() > 0){
     return header("Location:clients.php?update_success");
   }else{
-    return header("Location:?update_error");
+    return update_error_message();
   }
 }
 
@@ -140,11 +153,9 @@ public function delete_client($cin){
   if($client_delete){
     return header("Location:clients.php?delete_success");
   }else{
-    return header("Location:?delete_error");
+    return delete_error_message();
   }
 }
-
-
 
 //Fetch client function
 public function fetch_client($cin){
@@ -154,14 +165,14 @@ public function fetch_client($cin){
 
   $fetch_client = $this->db->select($query,[$cin]);
 
-  if($fetch_client){
+  if($fetch_client)
+  {
     return $fetch_client->fetch();
-  }else{
-    return header("Location:clients.php?error_message=Cette client N'exist pas! ");
-
   }
-
-
+  else
+    {
+      return header("Location:clients.php?error_message=Cette client N'exist pas! ");
+    }
 
 
 }
@@ -195,7 +206,6 @@ public function reservationHistory($cin)
     return 0;
   }
 }
-
 
 //Location history
 public function locationHistory($cin)

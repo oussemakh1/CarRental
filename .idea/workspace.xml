@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f69739-c62a-4b45-b1f7-cf181bd53e37" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modals/Cars.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modals/Cars.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modals/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modals/Clients.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/Vehicules/Vehicule_insert.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Vehicules/Vehicule_insert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +72,7 @@
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/bookstore-master" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -168,7 +173,10 @@
       <workItem from="1609419870149" duration="1677000" />
       <workItem from="1609421727831" duration="1388000" />
       <workItem from="1609424004483" duration="650000" />
-      <workItem from="1609430639606" duration="1563000" />
+      <workItem from="1609430639606" duration="1618000" />
+      <workItem from="1609433689917" duration="803000" />
+      <workItem from="1609441667994" duration="2388000" />
+      <workItem from="1609447591188" duration="160000" />
     </task>
     <servers />
   </component>
@@ -268,10 +276,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="518" y="306" key="NewPhpFileDialog/0.0.1366.768@0.0.1366.768" timestamp="1606597025431" />
-    <state x="184" y="14" key="SettingsEditor" timestamp="1609416508094">
+    <state x="184" y="14" key="SettingsEditor" timestamp="1609441783061">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="184" y="14" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1609416508094" />
+    <state x="184" y="14" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1609441783061" />
     <state x="339" y="167" key="run.anything.popup" timestamp="1609360742790">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

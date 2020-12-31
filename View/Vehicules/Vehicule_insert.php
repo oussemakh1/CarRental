@@ -66,8 +66,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                     shouldNotBeEmpty("s\'il vous plais inserée un fournisseur de vente!");
                 }
                 else {
-                  // $carController->insertCar($data);
-                    echo print_r($data);
+                  $carController->insertCar($data);
                 }
 
 
@@ -116,8 +115,6 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                           <option value="Essence">Essence</option>
                                           <option value="Diesel">Diesel</option>
                                           <option value="Hybride">Hybride</option>
-
-
                                 </select>
                             </div>
 
@@ -135,7 +132,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                             </div>
                             <div class="form-group col-md-3">
                                 <label>Traites mensuel</label>
-                                <input  name="montant_traites_mensuel" type="number" value="0" required class="form-control currency-inputmask" id="currency-mask" placeholder="Montant traites mensuel...">
+                                <input  name="montant_traites_mensuel" type="number" value="0" required class="form-control"  placeholder="Montant traites mensuel...">
                             </div>
                             <div class="form-group col-md-3">
                                 <label >N°traites</label>
@@ -312,7 +309,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                             <div class="row mt-3">
                                 <div class="form-group col-md-12">
                                     <label for="inputText3" >Detail reparation </label>
-                                    <textarea  name="detail_reparation"class="form-control"></textarea>
+                                    <textarea  name="detail_reparation" type="text" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="text-center mt-4">

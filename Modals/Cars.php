@@ -35,7 +35,8 @@ private  $img ;
 
 
 //Execute database connection
-public function __construct(){
+public function __construct()
+{
   $this->db = new Database();
 }
 
@@ -64,7 +65,6 @@ private function cars_data_collect($data){
 
 }
 
-
 private function carExist()
 {
   $query ="SELECT n_serie FROM cars WHERE n_serie = ?";
@@ -78,8 +78,10 @@ private function carExist()
   }
 }
 
+
 //Insert new car function
-public function insert_car($data){
+public function insert_car($data)
+{
 
     //Data collection
     $this->cars_data_collect($data);
@@ -93,38 +95,44 @@ public function insert_car($data){
                 type_vehicule,n_assurance,detail_reparation,n_serie,carte_grise)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+    try {
       //Insert new car
       $new_car = $this->db->insert(
           $query,
           [
-            $this->fournisseur,
-            $this->marque,
-            $this->model,
-            $this->carburant,
-            $this->date_achat,
-            $this->duree_vie,
-            $this->nb_km_avant_revision ,
-            $this->prix_achat_ht,
-            $this->tva,
-            $this->prix_achat_ttc,
-            $this->montant_traites_mensuel,
-            $this->nombre_traites,
-            $this->num_facture_fournisseur,
-            $this->color,
-            $this->type_vehicule,
-            $this->n_assurance,
-            $this->detail_reparation,
-            $this->n_serie,
-            $this->carte_grise
+              $this->fournisseur,
+              $this->marque,
+              $this->model,
+              $this->carburant,
+              $this->date_achat,
+              $this->duree_vie,
+              $this->nb_km_avant_revision,
+              $this->prix_achat_ht,
+              $this->tva,
+              $this->prix_achat_ttc,
+              $this->montant_traites_mensuel,
+              $this->nombre_traites,
+              $this->num_facture_fournisseur,
+              $this->color,
+              $this->type_vehicule,
+              $this->n_assurance,
+              $this->detail_reparation,
+              $this->n_serie,
+              $this->carte_grise
 
           ]
       );
-      //Error handling
+    }
+    catch(Exception $e)
+    {
+      return $e->getMessage();
+    }
+      /*Error handling
       if($new_car->rowCount() > 0){
         return header("Location:../Vehicules/Vehicules_all.php?insert_success");
       }else{
         return insert_error_message();
-      }
+      }*/
 
     }
 }
@@ -132,7 +140,8 @@ public function insert_car($data){
 
 
 //Update car function
-public function update_car($id,$data){
+public function update_car($id,$data)
+{
 
   //Data collection
   $this->cars_data_collect($data);
@@ -160,33 +169,37 @@ public function update_car($id,$data){
     WHERE id = ?";
 
   //Update car
-  $car_update = $this->db->update($query,[
-    $this->fournisseur,
-    $this->marque,
-    $this->model,
-    $this->carburant,
-    $this->date_achat,
-    $this->duree_vie,
-    $this->nb_km_avant_revision ,
-    $this->prix_achat_ht,
-    $this->tva,
-    $this->prix_achat_ttc,
-    $this->montant_traites_mensuel,
-    $this->nombre_traites,
-    $this->num_facture_fournisseur,
-    $this->color,
-    $this->type_vehicule,
-    $this->n_assurance,
-    $this->detail_reparation,
-    $this->n_serie,
-    $this->carte_grise,
-    $id
-  ]);
+  $car_update = $this->db->update(
+      $query,
+      [
+        $this->fournisseur,
+        $this->marque,
+        $this->model,
+        $this->carburant,
+        $this->date_achat,
+        $this->duree_vie,
+        $this->nb_km_avant_revision ,
+        $this->prix_achat_ht,
+        $this->tva,
+        $this->prix_achat_ttc,
+        $this->montant_traites_mensuel,
+        $this->nombre_traites,
+        $this->num_facture_fournisseur,
+        $this->color,
+        $this->type_vehicule,
+        $this->n_assurance,
+        $this->detail_reparation,
+        $this->n_serie,
+        $this->carte_grise,
+        $id
+     ]
+  );
 
   //Error handling
   if($car_update->rowCount() > 0){
     return header("Location:../Vehicules/Vehicules_all.php?update_success");
-  }else{
+  }
+  else{
     return update_error_message();
   }
 
@@ -194,7 +207,8 @@ public function update_car($id,$data){
 
 
 //Delete car function
-public function delete_car($id){
+public function delete_car($id)
+{
 
   //Query
   $query = "DELETE FROM cars  WHERE id = ?";
@@ -203,9 +217,11 @@ public function delete_car($id){
   $delete_car = $this->db->delete($query,[$id]);
 
   //Error handling
-  if($delete_car){
+  if($delete_car)
+  {
     return header("Location:../Vehicules/Vehicules_all.php?delete_success");
-  }else{
+  }
+  else{
     return delete_error_message();
   }
 
@@ -213,7 +229,8 @@ public function delete_car($id){
 
 
 //Get car By id  Function
-public function get_CarById($id){
+public function get_CarById($id)
+{
   //Fetch car
   $query ="SELECT * FROM cars WHERE id =?";
   $fetch_car = $this->db->select($query,[$id]);
@@ -226,10 +243,9 @@ public function get_CarById($id){
 }
 
 
-
-
 //Get all cars function
-public function get_allCars(){
+public function get_allCars()
+{
   //Fetch Cars
   $query =" SELECT * FROM cars ORDER BY id DESC";
   $fetch_cars = $this->db->query($query);
