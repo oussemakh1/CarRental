@@ -73,7 +73,7 @@ public function insert_client($data)
 
   //Check if client exists
   $client = $this->isClientExist($this->cin);
-  if($client == "false"){
+  if($client == false){
       //Query
       $query = "INSERT INTO  clients(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,n_permis,code_postal,type_client)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -97,7 +97,10 @@ public function insert_client($data)
       }
 
     }
-
+    else
+    {
+      return header("?error_message=deja exist!")
+    }
 }
 
 
