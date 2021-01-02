@@ -92,6 +92,9 @@ public function insert_car($data)
     $car_status = $this->db->select($query,[$this->n_serie]);
 
     if(!$car_status){
+
+      try {
+
       //Query
       $query = "INSERT INTO cars(fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,prix_achat_ht,tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,type_vehicule,n_assurance,detail_reparation,n_serie,carte_grise)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -122,12 +125,16 @@ public function insert_car($data)
 
           ]);
 
-      //Error handling
+        }
+        catch(Exception $e) {
+          return 'error => '.$e->getMessage();
+        }
+      /*Error handling
       if($new_car->rowCount() > 0){
         return header("Location:../Vehicules/Vehicules_all.php?insert_success");
       }else{
         return insert_error_message();
-      }
+       */
 
     } else {
       return header("Location:?error_message=Cette vehicule déja exist");
