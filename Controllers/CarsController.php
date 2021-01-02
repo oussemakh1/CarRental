@@ -46,33 +46,33 @@ class CarsController{
   //All cars
   public function allCars(){
 
-    return $this->car->get_allCars();
+    return $this->Car->get_allCars();
   }
 
   //Get car by id
   public function getCarById($id){
 
-    return $this->car->get_CarById($id);
+    return $this->Car->get_CarById($id);
 
   }
 
   //Insert car
   public function insertCar($data){
 
-    return $this->car->insert_car($data);
+    return $this->Car->insert_car($data);
   }
 
   //Update car
   public  function updateCar($id,$data){
 
-    return $this->car->update_car($id,$data);
+    return $this->Car->update_car($id,$data);
 
   }
 
   //Delete Car
   public function deleteCar($id){
 
-    return $this->car->delete_car($id);
+    return $this->Car->delete_car($id);
   }
 /** Reservation **/
 
