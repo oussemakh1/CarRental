@@ -66,7 +66,8 @@
                     }
                     else {
                         //Insert Fournisseur
-                        $FournisseurController->fournisseurInsert($data);
+                      //  $FournisseurController->fournisseurInsert($data);
+                      print_r($data);
                     }
 
 
