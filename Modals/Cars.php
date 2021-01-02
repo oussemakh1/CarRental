@@ -87,8 +87,11 @@ public function insert_car($data)
     //Data collection
     $this->cars_data_collect($data);
     //check if car already exists else insert it into database
-    $car_status = $this->carExist($this->n_serie);
-    if($car_status == false){
+
+    $query ="SELECT n_serie FROM cars WHERE n_serie = ?";
+    $car_status = $this->db->select($query,[$this->n_serie]);
+
+    if(!$car_status){
       //Query
       $query = "INSERT INTO cars(fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,prix_achat_ht,tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,type_vehicule,n_assurance,detail_reparation,n_serie,carte_grise)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

@@ -8,11 +8,13 @@ class CarsController{
 
 
   private $db;
-
+  private $Car
 
   //Execute database connection
-  public function __construct(){
+  public function __construct()
+  {
     $this->db = new Database();
+    $this->Car = new Cars();
   }
 
 
@@ -29,7 +31,7 @@ class CarsController{
                                  AND cars.n_serie NOT IN(SELECT n_serie FROM location WHERE location.date_retour > CURRENT_DATE() AND location.etat_vehicule = 'panne')
                                  AND cars.n_serie NOT IN(SELECT n_serie FROM reservation WHERE reservation.date_retour > CURRENT_DATE())
                                  AND cars.n_serie NOT IN(SELECT n_serie FROM reservation WHERE reservation.status = 'Failed')
- 
+
                                  ORDER BY id DESC ";
 
     $fetch_cars = $this->db->query($query);
@@ -43,38 +45,34 @@ class CarsController{
 
   //All cars
   public function allCars(){
-    $car = new Cars();
 
-    return $car->get_allCars();
+    return $this->car->get_allCars();
   }
 
   //Get car by id
   public function getCarById($id){
 
-    $car = new Cars();
-    return $car->get_CarById($id);
+    return $this->car->get_CarById($id);
 
   }
 
   //Insert car
   public function insertCar($data){
-    $car = new Cars();
-    return $car->insert_car($data);
+
+    return $this->car->insert_car($data);
   }
 
   //Update car
   public  function updateCar($id,$data){
 
-    $car = new Cars();
-    return $car->update_car($id,$data);
+    return $this->car->update_car($id,$data);
 
   }
 
   //Delete Car
   public function deleteCar($id){
-    $car = new Cars();
 
-    return $car->delete_car($id);
+    return $this->car->delete_car($id);
   }
 /** Reservation **/
 
