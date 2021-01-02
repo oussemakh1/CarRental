@@ -39,6 +39,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
               if(isset($_POST['insert_car']))
               {
 
+                $prix_achat_ttc =  $_POST['prix_achat_ht'] * (1 + ($_POST['tva'] / 100));
                 $data = [
                     "fournisseur" =>$_POST['fournisseur'],
                     "marque"=>$_POST['marque'],
@@ -57,11 +58,11 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                     "detail_reparation" => $_POST['detail_reparation'],
                     "n_serie" => $_POST['n_serie'],
                     "carte_grise" => $_POST['carte_grise'],
-                    "prix_achat_ttc" => $_POST['prix_achat_ht'] * (1 + ($_POST['tva'] / 100)),
+                    "prix_achat_ttc" =>$prix_achat_ttc,
                     "tva" => $_POST['tva']
                 ];
                 //Change to string
-                $fournisseur = strval($_POST['fournisseur']);
+                $fournisseur = strval($data['fournisseur']);
                 if(strlen($fournisseur) < 37) {
                     shouldNotBeEmpty("s\'il vous plais inserée un fournisseur de vente!");
                 }
@@ -86,19 +87,19 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                 <label for="input-select">Fournisseur</label>
                                 <select name="fournisseur" class="form-control" id="input-select">
                                     <?php
-                                    if(!empty($fournisseur_list)):
-                                   foreach($fournisseur_list as $fournisseur): ?>
-                                    <option selected value="<?php if(!empty($fournisseur)){
-                                      echo $fournisseur['societe'];
-                                    }else{
-                                      echo $fournisseur['civilite'];
-                                    } ?>
-                                    "><?php if(!empty($fournisseur)){
-                                      echo $fournisseur['societe'];
-                                    }else{
-                                      echo $fournisseur['civilite'];
-                                    } ?>
-                                    </option>
+                                      if(!empty($fournisseur_list)):
+                                       foreach($fournisseur_list as $fournisseur): ?>
+                                        <option selected value="<?php if(!empty($fournisseur)){
+                                          echo $fournisseur['societe'];
+                                      }else{
+                                        echo $fournisseur['civilite'];
+                                      } ?>
+                                      "><?php if(!empty($fournisseur)){
+                                        echo $fournisseur['societe'];
+                                      }else{
+                                        echo $fournisseur['civilite'];
+                                      } ?>
+                                      </option>
                                   <?php endforeach; endif;?>
                                 </select>
                             </div>
