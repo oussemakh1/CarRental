@@ -127,7 +127,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
 
                             <div class="form-group col-md-3">
                                 <label  >Durée de vie</label>
-                                <input name="duree_vie" type="number" class="form-control" placeholder="durée de vie ...">
+                                <input name="duree_vie" type="number" value="0" class="form-control" placeholder="durée de vie ...">
                             </div>
                             <div class="form-group col-md-3">
                                 <label >Date achat</label>
@@ -135,11 +135,11 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                             </div>
                             <div class="form-group col-md-3">
                                 <label>Traites mensuel</label>
-                                <input  name="montant_traites_mensuel" type="number"  class="form-control"  placeholder="Montant traites mensuel...">
+                                <input  name="montant_traites_mensuel" type="number" value="0"  class="form-control"  placeholder="Montant traites mensuel...">
                             </div>
                             <div class="form-group col-md-3">
                                 <label >N°traites</label>
-                                <input name="nombre_traites" type="number" placeholder="nombre des traites" class="form-control">
+                                <input name="nombre_traites" type="number" value="0" placeholder="nombre des traites" class="form-control">
                             </div>
 
                           </div>
@@ -293,11 +293,11 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                             <div class="row mt-3">
                                 <div class="form-group col-md-3">
                                     <label >Carte grise </label>
-                                    <input name="carte_grise" type="text" class="form-control" placeholder="carte grise...">
+                                    <input name="carte_grise" type="text" value="vide" class="form-control" placeholder="carte grise...">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label  >N°assurance</label>
-                                    <input name="n_assurance" type="text" class="form-control" placeholder="N°assurance">
+                                    <input name="n_assurance" type="text" valeu="vide" class="form-control" placeholder="N°assurance">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>N°serie</label>
@@ -305,14 +305,14 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>N°facture</label>
-                                    <input name="num_facture_fournisseur" type="number" class="form-control" placeholder="N°facture fournisseur..." >
+                                    <input name="num_facture_fournisseur" value="vide" type="number" class="form-control" placeholder="N°facture fournisseur..." >
                                 </div>
                             </div>
                             <!-- row  6-->
                             <div class="row mt-3">
                                 <div class="form-group col-md-12">
                                     <label for="inputText3" >Detail reparation </label>
-                                    <textarea  name="detail_reparation"  type="text" class="form-control"></textarea>
+                                    <textarea  name="detail_reparation"  value="" type="text" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="text-center mt-4">
