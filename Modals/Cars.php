@@ -42,14 +42,6 @@ public function __construct()
 
 private function cars_data_collect($data){
 
-  foreach($data as $value){
-    $value = trim($value);
-    if(empty($value)) {
-        $value = 0;
-    }
-  }
-
-
   $this->fournisseur = $data['fournisseur'];
   $this->marque = $data['marque'];
   $this->model = $data['model'];
@@ -92,6 +84,7 @@ private function carExist($n_serie)
 public function insert_car($data)
 {
 
+    return echo print_r($data);
     //Data collection
     $this->cars_data_collect($data);
     //check if car already exists else insert it into database
