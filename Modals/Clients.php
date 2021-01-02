@@ -99,7 +99,7 @@ public function insert_client($data)
     }
     else
     {
-      return header("?error_message=deja exist!")
+      return header("?error_message=deja exist!");
     }
 }
 
