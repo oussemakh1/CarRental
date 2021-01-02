@@ -56,7 +56,7 @@ private function isClientExist($cin)
   $query ="SELECT cin FROM clients WHERE cin = ?";
   $fetch_client = $this->db->select($query,[$cin]);
 
-  if($fetch_client)
+  if($fetch_client->rowCount() > 0)
   {
     return true;
   }

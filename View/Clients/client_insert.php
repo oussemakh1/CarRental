@@ -57,8 +57,8 @@ $clientController = new ClientController();
                 $telephone = $_POST['telephone'];
                 $n_permis = $_POST['n_permis'];
 
-                if(strlen($nom) < 4) {
-                    lengthShouldBe(4,'Champ nom');
+                if(strlen($nom) < 2) {
+                    lengthShouldBe(2,'Champ nom');
                 }
                 elseif(strlen($prenom) < 2) {
                     lengthShouldBe(2,'Champ prenom');
