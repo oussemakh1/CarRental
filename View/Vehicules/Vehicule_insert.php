@@ -134,11 +134,11 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                             </div>
                             <div class="form-group col-md-3">
                                 <label>Traites mensuel</label>
-                                <input  name="montant_traites_mensuel" type="number" value="0" required class="form-control"  placeholder="Montant traites mensuel...">
+                                <input  name="montant_traites_mensuel" type="number" value="0"  class="form-control"  placeholder="Montant traites mensuel...">
                             </div>
                             <div class="form-group col-md-3">
                                 <label >N°traites</label>
-                                <input name="nombre_traites" type="number" value="0" placeholder="nombre des traites" class="form-control" required>
+                                <input name="nombre_traites" type="number" value="0" placeholder="nombre des traites" class="form-control">
                             </div>
 
                           </div>
@@ -285,7 +285,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>N°km</label>
-                                    <input name="nb_km_avant_revision" value="0" required type="number" class="form-control"  placeholder="N°km avant revision..." >
+                                    <input name="nb_km_avant_revision" value="0"  type="number" class="form-control"  placeholder="N°km avant revision..." >
                                 </div>
                             </div>
                             <!-- row  5-->
