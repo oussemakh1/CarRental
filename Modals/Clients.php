@@ -51,10 +51,10 @@ private function clients_data_collect($data)
 
 }
 
-private function isClientExist()
+private function isClientExist($cin)
 {
   $query ="SELECT cin FROM clients WHERE cin = ?";
-  $fetch_client = $this->db->select($query,[$this->cin]);
+  $fetch_client = $this->db->select($query,[$cin]);
 
   if($fetch_client)
   {
@@ -72,7 +72,7 @@ public function insert_client($data)
   $this->clients_data_collect($data);
 
   //Check if client exists
-  $client = $this->isClientExist();
+  $client = $this->isClientExist($this->cin);
   if($client == "false"){
       //Query
       $query = "INSERT INTO  clients(nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,n_permis,code_postal,type_client)

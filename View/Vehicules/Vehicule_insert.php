@@ -97,7 +97,8 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                       echo $fournisseur['societe'];
                                     }else{
                                       echo $fournisseur['civilite'];
-                                    } ?></option>
+                                    } ?>
+                                    </option>
                                   <?php endforeach; endif;?>
                                 </select>
                             </div>

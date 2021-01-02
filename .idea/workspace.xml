@@ -7,6 +7,9 @@
     <list default="true" id="04f69739-c62a-4b45-b1f7-cf181bd53e37" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modals/Cars.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modals/Cars.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modals/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modals/Clients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Vehicules/Vehicule_insert.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Vehicules/Vehicule_insert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +175,9 @@
       <workItem from="1609430639606" duration="1618000" />
       <workItem from="1609433689917" duration="803000" />
       <workItem from="1609441667994" duration="2388000" />
-      <workItem from="1609447591188" duration="719000" />
+      <workItem from="1609447591188" duration="1657000" />
+      <workItem from="1609450140269" duration="1313000" />
+      <workItem from="1609609578459" duration="427000" />
     </task>
     <servers />
   </component>
@@ -196,18 +201,18 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="390" y="25" key="#PHP/0.0.1366.768@0.0.1366.768" timestamp="1605795223699" />
-    <state x="60" y="224" key="#SQL_Dialects" timestamp="1606044402828">
+    <state x="60" y="224" key="#SQL_Dialects" timestamp="1609448842176">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="60" y="224" key="#SQL_Dialects/0.0.1366.768@0.0.1366.768" timestamp="1606044402828" />
+    <state x="60" y="224" key="#SQL_Dialects/0.0.1366.768@0.0.1366.768" timestamp="1609448842176" />
     <state x="480" y="172" key="#Web_Browsers" timestamp="1606306566105">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="480" y="172" key="#Web_Browsers/0.0.1366.768@0.0.1366.768" timestamp="1606306566105" />
-    <state x="137" y="37" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605796464669">
+    <state x="137" y="37" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609448868168">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="137" y="37" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1605796464669" />
+    <state x="137" y="37" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1609448868168" />
     <state x="440" y="242" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606303510132">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

@@ -90,7 +90,7 @@ public function insert_car($data)
     if($car_status == false){
       //Query
       $query = "INSERT INTO 
-                cars (fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,
+                cars(fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,
                 prix_achat_ht,tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,
                 type_vehicule,n_assurance,detail_reparation,n_serie,carte_grise)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
