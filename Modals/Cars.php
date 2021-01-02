@@ -65,10 +65,10 @@ private function cars_data_collect($data){
 
 }
 
-private function carExist()
+private function carExist($n_serie)
 {
   $query ="SELECT n_serie FROM cars WHERE n_serie = ?";
-  $fetch_car = $this->db->select($query,[$this->n_serie]);
+  $fetch_car = $this->db->select($query,[$n_serie]);
 
   if($fetch_car)
   {
@@ -86,10 +86,10 @@ public function insert_car($data)
     //Data collection
     $this->cars_data_collect($data);
     //check if car already exists else insert it into database
-    $car_status = $this->carExist();
+    $car_status = $this->carExist($this->n_serie);
     if($car_status == false){
       //Query
-      $query = "INSERT INTO 
+      $query = "INSERT INTO
                 cars(fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,
                 prix_achat_ht,tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,
                 type_vehicule,n_assurance,detail_reparation,n_serie,carte_grise)
@@ -124,7 +124,7 @@ public function insert_car($data)
       );
 
       //Error handling
-      if($new_car->rowCount() > 0){
+      if($new_car){
         return header("Location:../Vehicules/Vehicules_all.php?insert_success");
       }else{
         return insert_error_message();
