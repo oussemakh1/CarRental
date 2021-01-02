@@ -84,7 +84,6 @@ private function carExist($n_serie)
 public function insert_car($data)
 {
 
-    return echo print_r($data);
     //Data collection
     $this->cars_data_collect($data);
     //check if car already exists else insert it into database

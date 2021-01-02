@@ -67,7 +67,8 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                     shouldNotBeEmpty("s\'il vous plais inserée un fournisseur de vente!");
                 }
                 else {
-                  $carController->insertCar($data);
+                  //$carController->insertCar($data);
+                  echo print_r($data);
                 }
 
 
