@@ -127,7 +127,7 @@ public function insert_car($data)
 
         }
         catch(Exception $e) {
-          return 'error => '.$e->getMessage();
+          echo 'error => '.$e->getMessage();
         }
       /*Error handling
       if($new_car->rowCount() > 0){
