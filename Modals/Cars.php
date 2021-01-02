@@ -127,10 +127,10 @@ public function insert_car($data)
         return header("Location:../Vehicules/Vehicules_all.php?insert_success");
       }else{
         return insert_error_message();
-      }else {
-        return header("Location:?error_message=Cette vehicule déja exist");
       }
 
+    } else {
+      return header("Location:?error_message=Cette vehicule déja exist");
     }
 }
 
