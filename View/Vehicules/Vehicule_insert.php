@@ -311,7 +311,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                             <div class="row mt-3">
                                 <div class="form-group col-md-12">
                                     <label for="inputText3" >Detail reparation </label>
-                                    <textarea  name="detail_reparation" type="text" class="form-control"></textarea>
+                                    <textarea  name="detail_reparation"  type="text" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="text-center mt-4">

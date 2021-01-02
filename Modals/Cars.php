@@ -42,6 +42,14 @@ public function __construct()
 
 private function cars_data_collect($data){
 
+  foreach($data as $value){
+    $value = trim($value);
+    if(empty($value)) {
+        $value = 0;
+    }
+  }
+
+
   $this->fournisseur = $data['fournisseur'];
   $this->marque = $data['marque'];
   $this->model = $data['model'];
@@ -61,6 +69,7 @@ private function cars_data_collect($data){
   $this->detail_reparation = $data['detail_reparation'];
   $this->n_serie = $data['n_serie'];
   $this->carte_grise = $data['carte_grise'];
+
 
 
 }
@@ -123,7 +132,7 @@ public function insert_car($data)
       );
 
       //Error handling
-      if($new_car){
+      if($new_car->rowCount() > 0){
         return header("Location:../Vehicules/Vehicules_all.php?insert_success");
       }else{
         return insert_error_message();
