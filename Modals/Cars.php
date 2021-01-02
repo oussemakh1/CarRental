@@ -90,16 +90,13 @@ public function insert_car($data)
     $car_status = $this->carExist($this->n_serie);
     if($car_status == false){
       //Query
-      $query = "INSERT INTO cars(fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,prix_achat_ht,
-                tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,type_vehicule,
-                n_assurance,detail_reparation,n_serie,carte_grise)
+      $query = "INSERT INTO cars(fournisseur,marque,model,carburant,date_achat,duree_vie,nb_km_avant_revision,prix_achat_ht,tva,prix_achat_ttc,montant_traites_mensuel,nombre_traites,num_facture_fournisseur,color,type_vehicule,n_assurance,detail_reparation,n_serie,carte_grise)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
       //Insert new car
       $new_car = $this->db->insert(
-          $query,
-          [
+          $query,[
               $this->fournisseur,
               $this->marque,
               $this->model,
@@ -120,8 +117,7 @@ public function insert_car($data)
               $this->n_serie,
               $this->carte_grise
 
-          ]
-      );
+          ]);
 
       //Error handling
       if($new_car->rowCount() > 0){
