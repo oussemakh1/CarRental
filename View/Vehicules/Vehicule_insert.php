@@ -41,6 +41,8 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
 
                 $prix_achat_ttc =  $_POST['prix_achat_ht'] * (1 + ($_POST['tva'] / 100));
                 $data = [
+
+
                     "fournisseur" =>$_POST['fournisseur'],
                     "marque"=>$_POST['marque'],
                     "model"=>$_POST['model'],
@@ -68,7 +70,15 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                 }
                 else {
                   //$carController->insertCar($data);
-                  print_r($data);
+                  // print_r($data);
+                  foreach($data as $key)
+                  {
+                    $key = trim($key);
+                    if(empty($key))
+                    {
+                      echo $key;
+                    }
+                  }
                 }
 
 
