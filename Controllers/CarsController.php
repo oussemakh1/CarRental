@@ -8,7 +8,7 @@ class CarsController{
 
 
   private $db;
-  private $Car
+  private $Car;
 
   //Execute database connection
   public function __construct()
