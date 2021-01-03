@@ -132,10 +132,10 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                             $reservation_id = $_GET['reservation_id'];
                             $reservationController = new ReservationController();
                             $changeReservationStatus = $reservationController->ReservationSuccess($reservation_id);
-                        } 
+                        }
 
                        $locationController = new LocationController();
-                       $insertCar = $locationController->insert_location($data); 
+                       $insertCar = $locationController->insert_location($data);
 
                     }
 
@@ -397,7 +397,8 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                                         <option value="93">93%</option>
                                         <option value="94">94%</option>
                                         <option value="95">95%</option>
-                                        <option value="96">96%</option><option value="97">97%</option>
+                                        <option value="96">96%</option>
+                                        <option value="97">97%</option>
                                         <option value="98">98%</option>
                                         <option value="99">99%</option>
                                         <option value="100">100%</option>
@@ -526,7 +527,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputText3" >Date acompte</label>
-                                     <input name="date_acompte" value="00-00-00" type="date" class="form-control">
+                                     <input name="date_acompte" type="date" class="form-control">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputText3" >Lieu retour</label>
