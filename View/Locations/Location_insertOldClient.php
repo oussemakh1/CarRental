@@ -527,7 +527,7 @@ if(isset($_GET['id'],$_GET['marque_vehicule'],$_GET['n_serie'])){
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputText3" >Date acompte</label>
-                                     <input name="date_acompte" value="0000-00-00 type="date" class="form-control">
+                                     <input name="date_acompte" value="0000-00-00" type="date" class="form-control">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputText3" >Lieu retour</label>
