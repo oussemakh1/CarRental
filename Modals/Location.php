@@ -148,6 +148,7 @@ public function insert_Location($data){
         $locationId = $this->db->link->lastInsertId();
         $getTva = getTva($this->remise,$this->prix_ht,$this->tva);
         $getDiscount = getDiscount($this->remise,$this->prix_ht);
+        $current_date = date('Y-m-d');
 
         $facture_data = [
             "nom_client"=>$this->nom,
@@ -156,16 +157,16 @@ public function insert_Location($data){
             "code_postal_client" =>$this->code_postal,
             "nom_adress_fact" =>$this->adress,
             "nb_jour" =>$this->nb_jour,
-            "prix" =>     $this->prix_ht,
-            "tva" =>   $getTva,
-            "remise" =>   $getDiscount,
-            "total" =>   $this->prix_ttc,
-            "date_fact" =>  date('Y-m-d'),
-            "date_reglement" =>   $this->paye_le,
-            "date_acompte" =>   $this->date_acompte,
-            "mode_reglement" =>   $this->mode_paiement,
-            "mode_livraison" =>   $this->lieu_delivrance,
-            "location_id" => $locationId,
+            "prix" =>$this->prix_ht,
+            "tva" =>$getTva,
+            "remise" =>$getDiscount,
+            "total" =>$this->prix_ttc,
+            "date_fact" =>$current_date,
+            "date_reglement" =>$this->paye_le,
+            "date_acompte" =>$this->date_acompte,
+            "mode_reglement" =>$this->mode_paiement,
+            "mode_livraison" =>$this->lieu_delivrance,
+            "location_id" =>$locationId,
             "cin" => $this->cin,
 
         ];
