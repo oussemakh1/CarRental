@@ -86,7 +86,7 @@ public function insert_facture($data){
        ]
     );
 
-   //Error Handeling
+    
 
 
 }

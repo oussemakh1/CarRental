@@ -174,8 +174,8 @@ public function insert_Location($data){
         $insertFact = $fact->insert_facture($facture_data);
 
 
-        if($insert_location->rowCount() > 0 && $insertFact->rowCount() > 0){
-            return header("Location:../Facture/facture.php?location_id=$locationId");
+        if($insert_location && $insertFact){
+            return print_r($facture_data);
         } else {
             return insert_error_message();
         }
