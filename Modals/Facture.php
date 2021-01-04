@@ -30,13 +30,15 @@ private $location_id;
 private $cin;
 
 //Execute database connection
-public function __construct(){
+public function __construct()
+{
   $this->db = new Database();
 }
 
 
 //Data collector
-public function facture_data_collector($data){
+public function facture_data_collector($data)
+{
 
   $this->nom_client = $data['nom_client'];
   $this->prenom_client = $data['prenom_client'];
@@ -56,14 +58,6 @@ public function facture_data_collector($data){
   $this->location_id = $data['location_id'];
   $this->cin = $data['cin'];
 
-
-  /** Filtring data
-
-
-
-  **/
-
-
 }
 
 //Insert  New Facture
@@ -74,8 +68,9 @@ public function insert_facture($data){
 
     //Query
     $query = "INSERT INTO facture(nom_client,prenom_client,telephone_client,
-                                  code_postal_client,nom_adress_fact,
-                                  nb_jour,prix,tva,remise,total,date_fact,date_reglement,date_acompte,mode_reglement,mode_livraison,location_id,cin)
+                                  code_postal_client,nom_adress_fact,nb_jour,prix,tva,
+                                  remise,total,date_fact,date_reglement,date_acompte,mode_reglement,
+                                  mode_livraison,location_id,cin)
                           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                                   ";
 
@@ -92,7 +87,7 @@ public function insert_facture($data){
     );
 
    //Error Handeling
-  
+
 
 }
 
@@ -160,7 +155,7 @@ public function delete_facture($id){
 //Fetch facture by id
 public function fetch_facture($id){
   //Query
-  $query  = "SELECT *,facture.tva as tva_fact,location.date_depart,location.date_retour,location.marque_vehicule 
+  $query  = "SELECT *,facture.tva as tva_fact,location.date_depart,location.date_retour,location.marque_vehicule
              FROM facture INNER JOIN location ON facture.location_id = location.id  WHERE location_id = ?";
 
   $fetch_facture = $this->db->select($query,[$id]);

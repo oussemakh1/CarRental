@@ -268,7 +268,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                 <div class="form-group col-md-3">
                                     <label for="input-select">Type vehicule</label>
                                     <select name="type_vehicule" class="form-control" >
-                                        <option value="Economy">Economy</option>
+                                        <option selected="selected" value="Economy">Economy</option>
                                         <option value="Mini">Mini</option>
                                         <option value="Citadine">Citadine</option>
                                         <option value="Compact">Compact</option>
@@ -288,7 +288,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>N°km</label>
-                                    <input name="nb_km_avant_revision"   type="number" class="form-control"  placeholder="N°km avant revision..." >
+                                    <input name="nb_km_avant_revision"  value="0" type="number" class="form-control"  placeholder="N°km avant revision..." >
                                 </div>
                             </div>
                             <!-- row  5-->
@@ -298,7 +298,7 @@ $fournisseur_list = $fournisseurs->getAllFournisseurByService('vente');
                                     <input name="carte_grise" type="text"  class="form-control" placeholder="carte grise...">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label  >N°assurance</label>
+                                    <label>N°assurance</label>
                                     <input name="n_assurance" type="text"  class="form-control" placeholder="N°assurance">
                                 </div>
                                 <div class="form-group col-md-3">

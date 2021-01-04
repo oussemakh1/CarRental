@@ -15,7 +15,7 @@
   //Clients
   include_once  '../../Modals/Clients.php';
 
-class Location{
+class Location {
 
   private $db;
   private $nom;
@@ -66,7 +66,7 @@ public function insert_Location($data){
   $this->Location_data_collect($data);
 
   // check if clients already in database
-  $clientExists = $this->ifClientExist();
+  $clientExists = $this->ifClientExist($this->cin);
 
   if($clientExists == false)
   {
@@ -94,7 +94,7 @@ public function insert_Location($data){
   // insert new renting
   if($isCarTaken == false)
   {
-        $query = "INSERT INTO  
+        $query = "INSERT INTO
                               location(
                                         nom,prenom,email,date_naissance,telephone,cin,adress,ville,pays,
                                         n_permis,code_postal,date_delivrance,lieu_delivrance,type_client,
@@ -145,7 +145,6 @@ public function insert_Location($data){
         );
 
         // generate invoice
-        $fact = new Facture();
         $locationId = $this->db->link->lastInsertId();
         $getTva = getTva($this->remise,$this->prix_ht,$this->tva);
         $getDiscount = getDiscount($this->remise,$this->prix_ht);
@@ -171,11 +170,11 @@ public function insert_Location($data){
 
         ];
 
-
+        $fact = new Facture();
         $insertFact = $fact->insert_facture($facture_data);
 
 
-        if($insert_location->rowCount() > 0){
+        if($insert_location->rowCount() > 0 && $insertFact->rowCount() > 0){
             return header("Location:../Facture/facture.php?location_id=$locationId");
         } else {
             return insert_error_message();
@@ -303,7 +302,7 @@ public function update_location($id,$data){
       $fact = new Facture();
       $fact->update_facture($id,$facture_data);
       return header("Location:../Facture/facture.php?location_id=$id");
-      
+
   }
   else{
     return update_error_message();
@@ -411,11 +410,11 @@ public function fetch_allLocation(){
 
 
 //Check if client exists
-    private function ifClientExist()
+    private function ifClientExist($cin)
     {
         //check database if cin exists
         $query = "SELECT * FROM clients WHERE cin = ?";
-        $fetch_client = $this->db->select($query,[$this->cin]);
+        $fetch_client = $this->db->select($query,[$cin]);
 
         if($fetch_client)
         {
